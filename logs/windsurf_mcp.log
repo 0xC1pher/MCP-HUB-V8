@@ -1,0 +1,4 @@
+🌊 [Windsurf-MCP] 2025-11-08 21:05:26,552 - INFO - 🚀 Iniciando MCP Hub Enhanced para Windsurf...
+🌊 [Windsurf-MCP] 2025-11-08 21:05:26,553 - INFO - ✅ Configuración Windsurf detectada
+🌊 [Windsurf-MCP] 2025-11-08 21:05:26,554 - INFO - 🔧 Modo detectado: balanced
+🌊 [Windsurf-MCP] 2025-11-08 21:05:26,554 - ERROR - ❌ Error inicializando sistema MCP: 'AdvancedConfig' object has no attribute 'max_expansions'

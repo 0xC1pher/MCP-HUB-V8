@@ -1,0 +1,337 @@
+2025-11-20 12:51:31,205 - __main__ - INFO - ================================================================================
+2025-11-20 12:51:31,208 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 12:51:31,209 - __main__ - INFO - ================================================================================
+2025-11-20 12:51:31,209 - __main__ - INFO - Verificando dependencias...
+2025-11-20 12:51:59,445 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 12:51:59,457 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 12:51:59,458 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 12:51:59,458 - __main__ - INFO - ✓ torch disponible
+2025-11-20 12:51:59,459 - __main__ - INFO - Configurando rutas...
+2025-11-20 12:51:59,459 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 12:51:59,460 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 12:51:59,460 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 12:51:59,461 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 12:51:59,461 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 12:51:59,462 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 12:51:59,462 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 12:51:59,463 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 12:51:59,505 - mcp_server_v5 - WARNING - Advanced features not available: cannot import name 'DynamicChunker' from 'advanced_features.dynamic_chunking' (C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core\advanced_features\dynamic_chunking.py)
+2025-11-20 12:51:59,562 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 12:51:59,562 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:51:59,563 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 12:51:59,563 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:51:59,563 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:51:59,564 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 12:51:59,564 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:51:59,566 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 12:51:59,566 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 12:51:59,567 - storage.vector_engine - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 12:51:59,571 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-11-20 12:51:59,571 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 12:52:08,189 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 12:52:08,192 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 12:52:08,193 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 12:52:08,193 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 12:52:08,200 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 12:52:08,201 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 12:52:08,202 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:52:08,202 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 12:52:08,203 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:52:08,204 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 12:52:08,205 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 12:52:08,205 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 12:52:08,205 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 12:52:08,206 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 12:52:08,206 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 12:52:08,207 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 12:52:08,207 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 12:52:08,208 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 12:52:08,211 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 12:52:08,211 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 12:52:08,212 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 12:52:08,212 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 12:52:08,212 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:52:08,213 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 12:52:08,213 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:52:08,214 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin
+2025-11-20 12:55:47,955 - __main__ - INFO - ================================================================================
+2025-11-20 12:55:47,955 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 12:55:47,955 - __main__ - INFO - ================================================================================
+2025-11-20 12:55:47,955 - __main__ - INFO - Verificando dependencias...
+2025-11-20 12:56:06,885 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 12:56:06,894 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 12:56:06,894 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 12:56:06,894 - __main__ - INFO - ✓ torch disponible
+2025-11-20 12:56:06,894 - __main__ - INFO - Configurando rutas...
+2025-11-20 12:56:06,895 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 12:56:06,895 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 12:56:06,895 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 12:56:06,896 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 12:56:06,896 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 12:56:06,896 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 12:56:06,896 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 12:56:06,896 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 12:56:06,997 - mcp_server_v5 - WARNING - Advanced features not available: cannot import name 'DynamicChunker' from 'advanced_features.dynamic_chunking' (C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core\advanced_features\dynamic_chunking.py)
+2025-11-20 12:56:07,107 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 12:56:07,107 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:56:07,107 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 12:56:07,108 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 12:56:07,108 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:56:07,108 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 12:56:07,108 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 12:56:07,109 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 12:56:07,109 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 12:56:07,109 - storage.vector_engine - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 12:56:07,113 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2025-11-20 12:56:07,114 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 12:56:16,175 - huggingface_hub.file_download - WARNING - Xet Storage is enabled for this repo, but the 'hf_xet' package is not installed. Falling back to regular HTTP download. For better performance, install the package with: `pip install huggingface_hub[hf_xet]` or `pip install hf_xet`
+2025-11-20 13:00:06,735 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 13:00:06,736 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 13:00:06,736 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 13:00:06,737 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 13:00:06,745 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 13:00:06,746 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 13:00:06,746 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:00:06,746 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 13:00:06,746 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:00:06,747 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 13:00:06,748 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:00:06,748 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 13:00:06,748 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 13:00:06,748 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:00:06,749 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 13:00:06,749 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 13:00:06,749 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 13:00:06,749 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 13:00:06,750 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 13:00:06,750 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 13:00:06,750 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 13:00:06,750 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 13:00:06,751 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:00:06,751 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 13:00:06,751 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:00:06,751 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin
+2025-11-20 13:00:06,751 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-20 13:13:37,556 - __main__ - INFO - ================================================================================
+2025-11-20 13:13:37,557 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 13:13:37,557 - __main__ - INFO - ================================================================================
+2025-11-20 13:13:37,557 - __main__ - INFO - Verificando dependencias...
+2025-11-20 13:13:57,630 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 13:13:57,639 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 13:13:57,639 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 13:13:57,639 - __main__ - INFO - ✓ torch disponible
+2025-11-20 13:13:57,640 - __main__ - INFO - Configurando rutas...
+2025-11-20 13:13:57,640 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 13:13:57,640 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 13:13:57,640 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 13:13:57,640 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 13:13:57,641 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:13:57,641 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:13:57,641 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 13:13:57,641 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 13:13:57,675 - mcp_server_v5 - WARNING - Advanced features not available: cannot import name 'DynamicChunker' from 'advanced_features.dynamic_chunking' (C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core\advanced_features\dynamic_chunking.py)
+2025-11-20 13:13:57,706 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 13:13:57,706 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:13:57,706 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 13:13:57,706 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:13:57,706 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:13:57,706 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 13:13:57,706 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:13:57,707 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 13:13:57,708 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 13:13:57,708 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 13:13:57,708 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 13:13:57,708 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 13:13:57,709 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 13:13:57,709 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 13:13:57,709 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 13:13:57,716 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 13:13:57,717 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 13:13:57,717 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:13:57,717 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 13:13:57,717 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:13:57,717 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 13:13:57,718 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:13:57,718 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 13:13:57,718 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 13:13:57,718 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:13:57,719 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 13:13:57,719 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 13:13:57,719 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 13:13:57,719 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 13:13:57,720 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 13:13:57,720 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 13:13:57,720 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 13:13:57,720 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 13:13:57,721 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:13:57,721 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 13:13:57,721 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:13:57,721 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin
+2025-11-20 13:13:57,722 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-20 13:18:32,628 - __main__ - INFO - ================================================================================
+2025-11-20 13:18:32,628 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 13:18:32,628 - __main__ - INFO - ================================================================================
+2025-11-20 13:18:32,628 - __main__ - INFO - Verificando dependencias...
+2025-11-20 13:18:45,240 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 13:18:45,242 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 13:18:45,243 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 13:18:45,243 - __main__ - INFO - ✓ torch disponible
+2025-11-20 13:18:45,243 - __main__ - INFO - Configurando rutas...
+2025-11-20 13:18:45,244 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 13:18:45,244 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 13:18:45,244 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 13:18:45,244 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 13:18:45,245 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:18:45,245 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:18:45,245 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 13:18:45,245 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 13:18:45,265 - mcp_server_v5 - WARNING - Advanced features not available: cannot import name 'DynamicChunker' from 'advanced_features.dynamic_chunking' (C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core\advanced_features\dynamic_chunking.py)
+2025-11-20 13:18:45,305 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 13:18:45,305 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:18:45,305 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 13:18:45,306 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:18:45,306 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:18:45,306 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 13:18:45,306 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:18:45,307 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 13:18:45,307 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 13:18:45,308 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 13:18:45,308 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 13:18:45,308 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 13:18:45,310 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 13:18:45,310 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 13:18:45,310 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 13:18:45,346 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 13:18:45,347 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 13:18:45,347 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:18:45,347 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 13:18:45,347 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:18:45,348 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 13:18:45,349 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:18:45,349 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 13:18:45,350 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 13:18:45,350 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:18:45,351 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 13:18:45,352 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 13:18:45,353 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 13:18:45,353 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 13:18:45,356 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 13:18:45,357 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 13:18:45,357 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 13:18:45,357 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 13:18:45,357 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:18:45,358 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 13:18:45,358 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:18:45,358 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin
+2025-11-20 13:31:55,307 - __main__ - INFO - ================================================================================
+2025-11-20 13:31:55,308 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 13:31:55,308 - __main__ - INFO - ================================================================================
+2025-11-20 13:31:55,308 - __main__ - INFO - Verificando dependencias...
+2025-11-20 13:32:10,170 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 13:32:10,173 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 13:32:10,173 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 13:32:10,173 - __main__ - INFO - ✓ torch disponible
+2025-11-20 13:32:10,173 - __main__ - INFO - Configurando rutas...
+2025-11-20 13:32:10,174 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 13:32:10,174 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 13:32:10,174 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 13:32:10,174 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 13:32:10,175 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:32:10,175 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:32:10,175 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 13:32:10,175 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 13:32:10,206 - mcp_server_v5 - WARNING - Advanced features not available: cannot import name 'DynamicChunker' from 'advanced_features.dynamic_chunking' (C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core\advanced_features\dynamic_chunking.py)
+2025-11-20 13:32:10,261 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 13:32:10,261 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:32:10,261 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 13:32:10,261 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:32:10,261 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:32:10,261 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 13:32:10,261 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:32:10,262 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 13:32:10,262 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 13:32:10,262 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 13:32:10,262 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 13:32:10,263 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 13:32:10,264 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 13:32:10,264 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 13:32:10,264 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 13:32:10,271 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 13:32:10,272 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 13:32:10,272 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:32:10,272 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 13:32:10,272 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 13:32:10,273 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 13:32:10,273 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 13:32:10,273 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 13:32:10,273 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 13:32:10,274 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 13:32:10,274 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 13:32:10,274 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 13:32:10,274 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 13:32:10,275 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 13:32:10,276 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 13:32:10,276 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 13:32:10,276 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 13:32:10,276 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 13:32:10,276 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:32:10,277 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 13:32:10,277 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 13:32:10,277 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin
+2025-11-20 13:32:10,278 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-20 13:33:28,826 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-20 14:25:33,455 - __main__ - INFO - ================================================================================
+2025-11-20 14:25:33,456 - __main__ - INFO - MCP Server v6 - Iniciando con wrapper robusto
+2025-11-20 14:25:33,457 - __main__ - INFO - ================================================================================
+2025-11-20 14:25:33,457 - __main__ - INFO - Verificando dependencias...
+2025-11-20 14:25:57,122 - __main__ - INFO - ✓ sentence_transformers disponible
+2025-11-20 14:25:57,133 - __main__ - INFO - ✓ hnswlib disponible
+2025-11-20 14:25:57,133 - __main__ - INFO - ✓ numpy disponible
+2025-11-20 14:25:57,134 - __main__ - INFO - ✓ torch disponible
+2025-11-20 14:25:57,134 - __main__ - INFO - Configurando rutas...
+2025-11-20 14:25:57,135 - __main__ - INFO - MCP Hub Root: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6
+2025-11-20 14:25:57,135 - __main__ - INFO - Current Dir: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\core
+2025-11-20 14:25:57,136 - __main__ - INFO - Creando directorios necesarios...
+2025-11-20 14:25:57,136 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data
+2025-11-20 14:25:57,137 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 14:25:57,137 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 14:25:57,137 - __main__ - INFO - ✓ Directorio verificado: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\logs
+2025-11-20 14:25:57,138 - __main__ - INFO - Importando servidor MCP v6...
+2025-11-20 14:25:57,185 - mcp_server_v5 - INFO - Advanced features disabled (v5/v6 use core functionality only)
+2025-11-20 14:25:57,244 - __main__ - INFO - Iniciando servidor MCP v6...
+2025-11-20 14:25:57,244 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 14:25:57,244 - mcp_server_v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 14:25:57,245 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 14:25:57,245 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 14:25:57,245 - mcp_server_v5 - INFO - MCP Server v5 - Memory and Context Only
+2025-11-20 14:25:57,248 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 14:25:57,249 - mcp_server_v5 - INFO - Configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 14:25:57,251 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors.mp4
+2025-11-20 14:25:57,252 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 14:25:57,253 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 14:25:57,253 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 14:25:57,254 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 14:25:57,255 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 14:25:57,255 - mcp_server_v5 - INFO - Loaded existing snapshot
+2025-11-20 14:25:57,268 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 14:25:57,268 - mcp_server_v5 - INFO - HNSW index loaded from MP4
+2025-11-20 14:25:57,269 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 14:25:57,269 - mcp_server_v5 - INFO - MCP Server v5 ready
+2025-11-20 14:25:57,269 - mcp_server_v5 - INFO - ================================================================================
+2025-11-20 14:25:57,270 - mcp_server_v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 14:25:57,271 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 14:25:57,272 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 14:25:57,272 - mcp_server_v6 - INFO - Session manager initialized
+2025-11-20 14:25:57,274 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 14:25:57,276 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 14:25:57,276 - mcp_server_v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 14:25:57,277 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 14:25:57,278 - mcp_server_v6 - INFO - Entity tracker initialized
+2025-11-20 14:25:57,284 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 14:25:57,285 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 14:25:57,285 - mcp_server_v6 - INFO - Contextual resolver initialized
+2025-11-20 14:25:57,286 - mcp_server_v6 - INFO - TOON initialized: 3500 tokens available
+2025-11-20 14:25:57,286 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 14:25:57,287 - mcp_server_v6 - INFO - MCP Server v6 ready
+2025-11-20 14:25:57,287 - mcp_server_v6 - INFO - ================================================================================
+2025-11-20 14:25:57,287 - mcp_server_v6 - INFO - Server ready - waiting for requests on stdin

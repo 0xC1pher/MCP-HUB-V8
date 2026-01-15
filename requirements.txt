@@ -1,0 +1,31 @@
+# ============================================
+# MCP Hub v6.0 - Requirements
+# Python 3.8+ (Recomendado: Python 3.11)
+# ============================================
+
+# Core Dependencies
+# -----------------
+numpy>=1.21.0,<2.0.0
+msgpack>=1.0.5
+zstandard>=0.19.0
+
+# Vector Search and Storage (v5)
+# -------------------------------
+hnswlib>=0.7.0
+pymp4>=1.4.0
+tiktoken>=0.5.0
+sentence-transformers>=2.2.0
+uvicorn>=0.29.0
+mcp>=0.3.0
+
+# Development Dependencies
+# ------------------------
+# pytest>=7.0.0
+# black>=22.0.0
+# flake8>=4.0.0
+# mypy>=0.950
+
+# Documentation
+# -------------
+# sphinx>=4.0.0
+# sphinx-rtd-theme>=1.0.0

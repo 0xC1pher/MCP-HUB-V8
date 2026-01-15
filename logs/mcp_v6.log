@@ -1,0 +1,1035 @@
+2025-11-20 20:20:47,728 - __main__ - INFO - ================================================================================
+2025-11-20 20:20:47,728 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 20:20:47,729 - __main__ - INFO - ================================================================================
+2025-11-20 20:20:47,730 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 20:20:47,731 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-20 20:20:47,732 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 20:20:47,733 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 20:20:47,733 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 20:20:47,738 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-20 20:20:47,740 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 20:20:47,741 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 20:20:47,741 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-20 20:20:47,748 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 20:20:47,749 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-20 20:20:47,750 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-20 20:20:47,751 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 20:20:47,751 - __main__ - INFO - Initializing v6-specific components...
+2025-11-20 20:20:47,752 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 20:20:47,752 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 20:20:47,753 - __main__ - INFO - Session manager initialized
+2025-11-20 20:20:47,753 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 20:20:47,754 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 20:20:47,754 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 20:20:47,755 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 20:20:47,755 - __main__ - INFO - Entity tracker initialized
+2025-11-20 20:20:47,757 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 20:20:47,757 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 20:20:47,758 - __main__ - INFO - Contextual resolver initialized
+2025-11-20 20:20:47,758 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-20 20:20:47,758 - __main__ - INFO - v6 components initialized successfully
+2025-11-20 20:20:47,759 - __main__ - INFO - ================================================================================
+2025-11-20 20:20:47,759 - __main__ - INFO - MCP Server v6 ready
+2025-11-20 20:20:47,760 - __main__ - INFO - ================================================================================
+2025-11-20 20:20:47,760 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-20 20:54:39,121 - __main__ - INFO - ================================================================================
+2025-11-20 20:54:39,122 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-20 20:54:39,122 - __main__ - INFO - ================================================================================
+2025-11-20 20:54:39,124 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-20 20:54:39,125 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-20 20:54:39,125 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-20 20:54:39,126 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-20 20:54:39,126 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-20 20:54:39,128 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-20 20:54:39,130 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-20 20:54:39,130 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-20 20:54:39,130 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-20 20:54:39,142 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-20 20:54:39,143 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-20 20:54:39,143 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-20 20:54:39,144 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-20 20:54:39,144 - __main__ - INFO - Initializing v6-specific components...
+2025-11-20 20:54:39,145 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-20 20:54:39,145 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-20 20:54:39,145 - __main__ - INFO - Session manager initialized
+2025-11-20 20:54:39,146 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-20 20:54:39,146 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-20 20:54:39,146 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-20 20:54:39,146 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-20 20:54:39,147 - __main__ - INFO - Entity tracker initialized
+2025-11-20 20:54:39,148 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-20 20:54:39,148 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-20 20:54:39,148 - __main__ - INFO - Contextual resolver initialized
+2025-11-20 20:54:39,148 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-20 20:54:39,148 - __main__ - INFO - v6 components initialized successfully
+2025-11-20 20:54:39,148 - __main__ - INFO - ================================================================================
+2025-11-20 20:54:39,148 - __main__ - INFO - MCP Server v6 ready
+2025-11-20 20:54:39,148 - __main__ - INFO - ================================================================================
+2025-11-20 20:54:39,148 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-20 20:54:39,149 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-21 14:55:31,151 - __main__ - INFO - Server stopped
+2025-11-21 14:55:31,197 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-21 23:27:00,630 - __main__ - INFO - ================================================================================
+2025-11-21 23:27:00,630 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-21 23:27:00,631 - __main__ - INFO - ================================================================================
+2025-11-21 23:27:00,632 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-21 23:27:00,633 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-21 23:27:00,634 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-21 23:27:00,634 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-21 23:27:00,635 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-21 23:27:00,639 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-21 23:27:00,641 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-21 23:27:00,642 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-21 23:27:00,642 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-21 23:27:00,652 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-21 23:27:00,654 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-21 23:27:00,655 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-21 23:27:00,657 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-21 23:27:00,658 - __main__ - INFO - Initializing v6-specific components...
+2025-11-21 23:27:00,659 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-21 23:27:00,659 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-21 23:27:00,660 - __main__ - INFO - Session manager initialized
+2025-11-21 23:27:00,661 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-21 23:27:00,662 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-21 23:27:00,662 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-21 23:27:00,663 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-21 23:27:00,663 - __main__ - INFO - Entity tracker initialized
+2025-11-21 23:27:00,666 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-21 23:27:00,667 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-21 23:27:00,667 - __main__ - INFO - Contextual resolver initialized
+2025-11-21 23:27:00,668 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-21 23:27:00,668 - __main__ - INFO - v6 components initialized successfully
+2025-11-21 23:27:00,668 - __main__ - INFO - ================================================================================
+2025-11-21 23:27:00,668 - __main__ - INFO - MCP Server v6 ready
+2025-11-21 23:27:00,669 - __main__ - INFO - ================================================================================
+2025-11-21 23:27:00,669 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-21 23:40:31,161 - __main__ - INFO - ================================================================================
+2025-11-21 23:40:31,161 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-21 23:40:31,162 - __main__ - INFO - ================================================================================
+2025-11-21 23:40:31,163 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-21 23:40:31,164 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-21 23:40:31,164 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-21 23:40:31,164 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-21 23:40:31,164 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-21 23:40:31,168 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-21 23:40:31,170 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-21 23:40:31,170 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-21 23:40:31,170 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-21 23:40:31,180 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-21 23:40:31,182 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-21 23:40:31,182 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-21 23:40:31,183 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-21 23:40:31,183 - __main__ - INFO - Initializing v6-specific components...
+2025-11-21 23:40:31,184 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-21 23:40:31,184 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-21 23:40:31,184 - __main__ - INFO - Session manager initialized
+2025-11-21 23:40:31,184 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-21 23:40:31,185 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-21 23:40:31,185 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-21 23:40:31,186 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-21 23:40:31,186 - __main__ - INFO - Entity tracker initialized
+2025-11-21 23:40:31,189 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-21 23:40:31,189 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-21 23:40:31,190 - __main__ - INFO - Contextual resolver initialized
+2025-11-21 23:40:31,190 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-21 23:40:31,190 - __main__ - INFO - v6 components initialized successfully
+2025-11-21 23:40:31,190 - __main__ - INFO - ================================================================================
+2025-11-21 23:40:31,190 - __main__ - INFO - MCP Server v6 ready
+2025-11-21 23:40:31,191 - __main__ - INFO - ================================================================================
+2025-11-21 23:40:31,191 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-22 22:58:26,755 - __main__ - INFO - ================================================================================
+2025-11-22 22:58:26,756 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-22 22:58:26,756 - __main__ - INFO - ================================================================================
+2025-11-22 22:58:26,757 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-22 22:58:26,760 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-22 22:58:26,761 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-22 22:58:26,761 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-22 22:58:26,761 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-22 22:58:26,765 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-22 22:58:26,770 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-22 22:58:26,770 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-22 22:58:26,770 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-22 22:58:26,794 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-22 22:58:26,795 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-22 22:58:26,795 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-22 22:58:26,797 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-22 22:58:26,797 - __main__ - INFO - Initializing v6-specific components...
+2025-11-22 22:58:26,797 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-22 22:58:26,798 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-22 22:58:26,798 - __main__ - INFO - Session manager initialized
+2025-11-22 22:58:26,799 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-22 22:58:26,800 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-22 22:58:26,800 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-22 22:58:26,801 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-22 22:58:26,801 - __main__ - INFO - Entity tracker initialized
+2025-11-22 22:58:26,804 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-22 22:58:26,805 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-22 22:58:26,805 - __main__ - INFO - Contextual resolver initialized
+2025-11-22 22:58:26,805 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-22 22:58:26,805 - __main__ - INFO - v6 components initialized successfully
+2025-11-22 22:58:26,806 - __main__ - INFO - ================================================================================
+2025-11-22 22:58:26,807 - __main__ - INFO - MCP Server v6 ready
+2025-11-22 22:58:26,807 - __main__ - INFO - ================================================================================
+2025-11-22 22:58:26,807 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-22 22:59:42,686 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-22 23:01:36,367 - __main__ - INFO - ================================================================================
+2025-11-22 23:01:36,369 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-22 23:01:36,369 - __main__ - INFO - ================================================================================
+2025-11-22 23:01:36,371 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-22 23:01:36,372 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-22 23:01:36,372 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-22 23:01:36,373 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-22 23:01:36,373 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-22 23:01:36,377 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-22 23:01:36,380 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-22 23:01:36,381 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-22 23:01:36,382 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-22 23:01:36,406 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-22 23:01:36,409 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-22 23:01:36,409 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-22 23:01:36,412 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-22 23:01:36,413 - __main__ - INFO - Initializing v6-specific components...
+2025-11-22 23:01:36,413 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-22 23:01:36,414 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-22 23:01:36,414 - __main__ - INFO - Session manager initialized
+2025-11-22 23:01:36,415 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-22 23:01:36,415 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-22 23:01:36,416 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-22 23:01:36,416 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-22 23:01:36,417 - __main__ - INFO - Entity tracker initialized
+2025-11-22 23:01:36,424 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-22 23:01:36,424 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-22 23:01:36,425 - __main__ - INFO - Contextual resolver initialized
+2025-11-22 23:01:36,425 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-22 23:01:36,425 - __main__ - INFO - v6 components initialized successfully
+2025-11-22 23:01:36,425 - __main__ - INFO - ================================================================================
+2025-11-22 23:01:36,425 - __main__ - INFO - MCP Server v6 ready
+2025-11-22 23:01:36,426 - __main__ - INFO - ================================================================================
+2025-11-22 23:01:36,426 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-23 08:40:17,740 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 21:15:38,622 - __main__ - INFO - ================================================================================
+2025-11-26 21:15:38,622 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 21:15:38,622 - __main__ - INFO - ================================================================================
+2025-11-26 21:15:38,623 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 21:15:38,623 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 21:15:38,623 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 21:15:38,623 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 21:15:38,623 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 21:15:38,628 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 21:15:38,629 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 21:15:38,629 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 21:15:38,629 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 21:15:38,637 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 21:15:38,638 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 21:15:38,638 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 21:15:38,639 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 21:15:38,639 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 21:15:38,640 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 21:15:38,640 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 21:15:38,640 - __main__ - INFO - Session manager initialized
+2025-11-26 21:15:38,640 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 21:15:38,640 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 21:15:38,641 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 21:15:38,641 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 21:15:38,641 - __main__ - INFO - Entity tracker initialized
+2025-11-26 21:15:38,642 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 21:15:38,642 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 21:15:38,642 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 21:15:38,643 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 21:15:38,643 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 21:15:38,643 - __main__ - INFO - ================================================================================
+2025-11-26 21:15:38,643 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 21:15:38,643 - __main__ - INFO - ================================================================================
+2025-11-26 21:15:38,643 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 21:40:35,047 - __main__ - INFO - ================================================================================
+2025-11-26 21:40:35,047 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 21:40:35,048 - __main__ - INFO - ================================================================================
+2025-11-26 21:40:35,048 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 21:40:35,049 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 21:40:35,049 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 21:40:35,049 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 21:40:35,050 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 21:40:35,051 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 21:40:35,054 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 21:40:35,055 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 21:40:35,055 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 21:40:35,066 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 21:40:35,067 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 21:40:35,067 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 21:40:35,071 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 21:40:35,072 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 21:40:35,072 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 21:40:35,073 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 21:40:35,073 - __main__ - INFO - Session manager initialized
+2025-11-26 21:40:35,074 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 21:40:35,075 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 21:40:35,075 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 21:40:35,076 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 21:40:35,077 - __main__ - INFO - Entity tracker initialized
+2025-11-26 21:40:35,079 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 21:40:35,079 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 21:40:35,080 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 21:40:35,080 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 21:40:35,080 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 21:40:35,081 - __main__ - INFO - ================================================================================
+2025-11-26 21:40:35,081 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 21:40:35,081 - __main__ - INFO - ================================================================================
+2025-11-26 21:40:35,081 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 21:40:35,081 - __main__ - ERROR - Invalid JSON: Unexpected UTF-8 BOM (decode using utf-8-sig): line 1 column 1 (char 0)
+2025-11-26 21:40:35,082 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 22:04:23,701 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 22:05:10,481 - __main__ - INFO - ================================================================================
+2025-11-26 22:05:10,482 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 22:05:10,482 - __main__ - INFO - ================================================================================
+2025-11-26 22:05:10,483 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 22:05:10,484 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 22:05:10,485 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 22:05:10,485 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 22:05:10,485 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 22:05:10,506 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 22:05:10,508 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 22:05:10,509 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 22:05:10,509 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 22:05:10,519 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 22:05:10,520 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 22:05:10,520 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 22:05:10,522 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 22:05:10,522 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 22:05:10,522 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 22:05:10,523 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 22:05:10,523 - __main__ - INFO - Session manager initialized
+2025-11-26 22:05:10,523 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 22:05:10,524 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 22:05:10,524 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 22:05:10,525 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 22:05:10,525 - __main__ - INFO - Entity tracker initialized
+2025-11-26 22:05:10,528 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 22:05:10,528 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 22:05:10,528 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 22:05:10,528 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 22:05:10,528 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 22:05:10,529 - __main__ - INFO - ================================================================================
+2025-11-26 22:05:10,529 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 22:05:10,529 - __main__ - INFO - ================================================================================
+2025-11-26 22:05:10,529 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 23:01:28,242 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 23:02:52,749 - __main__ - INFO - ================================================================================
+2025-11-26 23:02:52,749 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 23:02:52,749 - __main__ - INFO - ================================================================================
+2025-11-26 23:02:52,750 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 23:02:52,751 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:02:52,751 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 23:02:52,751 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 23:02:52,752 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 23:02:52,753 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:02:52,755 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 23:02:52,756 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 23:02:52,756 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 23:02:52,766 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 23:02:52,767 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 23:02:52,767 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 23:02:52,768 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 23:02:52,768 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 23:02:52,768 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 23:02:52,768 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 23:02:52,768 - __main__ - INFO - Session manager initialized
+2025-11-26 23:02:52,769 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 23:02:52,769 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 23:02:52,769 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 23:02:52,770 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 23:02:52,770 - __main__ - INFO - Entity tracker initialized
+2025-11-26 23:02:52,774 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 23:02:52,774 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 23:02:52,774 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 23:02:52,774 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 23:02:52,774 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 23:02:52,775 - __main__ - INFO - ================================================================================
+2025-11-26 23:02:52,775 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 23:02:52,775 - __main__ - INFO - ================================================================================
+2025-11-26 23:02:52,775 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 23:02:52,777 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 23:05:25,427 - __main__ - INFO - ================================================================================
+2025-11-26 23:05:25,427 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 23:05:25,427 - __main__ - INFO - ================================================================================
+2025-11-26 23:05:25,427 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 23:05:25,428 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:05:25,428 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 23:05:25,428 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 23:05:25,428 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 23:05:25,429 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:05:25,430 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 23:05:25,430 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 23:05:25,430 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 23:05:25,436 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 23:05:25,436 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 23:05:25,436 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 23:05:25,437 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 23:05:25,437 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 23:05:25,437 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 23:05:25,438 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 23:05:25,438 - __main__ - INFO - Session manager initialized
+2025-11-26 23:05:25,438 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 23:05:25,438 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 23:05:25,438 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 23:05:25,439 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 23:05:25,439 - __main__ - INFO - Entity tracker initialized
+2025-11-26 23:05:25,440 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 23:05:25,440 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 23:05:25,440 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 23:05:25,440 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 23:05:25,440 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 23:05:25,441 - __main__ - INFO - ================================================================================
+2025-11-26 23:05:25,441 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 23:05:25,441 - __main__ - INFO - ================================================================================
+2025-11-26 23:05:25,441 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 23:05:25,442 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 23:17:11,655 - __main__ - INFO - ================================================================================
+2025-11-26 23:17:11,655 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 23:17:11,656 - __main__ - INFO - ================================================================================
+2025-11-26 23:17:11,657 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 23:17:11,658 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:17:11,658 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 23:17:11,658 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 23:17:11,659 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 23:17:11,672 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:17:11,676 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 23:17:11,676 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 23:17:11,676 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 23:17:11,684 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 23:17:11,685 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 23:17:11,685 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 23:17:11,686 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 23:17:11,686 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 23:17:11,686 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 23:17:11,686 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 23:17:11,686 - __main__ - INFO - Session manager initialized
+2025-11-26 23:17:11,687 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 23:17:11,687 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 23:17:11,687 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 23:17:11,687 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 23:17:11,688 - __main__ - INFO - Entity tracker initialized
+2025-11-26 23:17:11,689 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 23:17:11,689 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 23:17:11,689 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 23:17:11,689 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 23:17:11,689 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 23:17:11,689 - __main__ - INFO - ================================================================================
+2025-11-26 23:17:11,690 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 23:17:11,690 - __main__ - INFO - ================================================================================
+2025-11-26 23:17:11,690 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 23:17:11,692 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-26 23:21:57,983 - __main__ - INFO - ================================================================================
+2025-11-26 23:21:57,984 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-26 23:21:57,984 - __main__ - INFO - ================================================================================
+2025-11-26 23:21:57,985 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-26 23:21:57,988 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:21:57,988 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-26 23:21:57,989 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-26 23:21:57,991 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-26 23:21:57,993 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-26 23:21:57,995 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-26 23:21:57,995 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-26 23:21:57,996 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-26 23:21:58,076 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-26 23:21:58,077 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-26 23:21:58,077 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-26 23:21:58,079 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-26 23:21:58,079 - __main__ - INFO - Initializing v6-specific components...
+2025-11-26 23:21:58,080 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-26 23:21:58,080 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-26 23:21:58,080 - __main__ - INFO - Session manager initialized
+2025-11-26 23:21:58,081 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-26 23:21:58,082 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-26 23:21:58,082 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-26 23:21:58,082 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-26 23:21:58,086 - __main__ - INFO - Entity tracker initialized
+2025-11-26 23:21:58,089 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-26 23:21:58,089 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-26 23:21:58,089 - __main__ - INFO - Contextual resolver initialized
+2025-11-26 23:21:58,089 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-26 23:21:58,090 - __main__ - INFO - v6 components initialized successfully
+2025-11-26 23:21:58,090 - __main__ - INFO - ================================================================================
+2025-11-26 23:21:58,090 - __main__ - INFO - MCP Server v6 ready
+2025-11-26 23:21:58,090 - __main__ - INFO - ================================================================================
+2025-11-26 23:21:58,090 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-26 23:21:58,091 - storage.mp4_storage - INFO - MP4 storage closed
+2025-11-27 19:43:19,606 - __main__ - INFO - ================================================================================
+2025-11-27 19:43:19,606 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-27 19:43:19,607 - __main__ - INFO - ================================================================================
+2025-11-27 19:43:19,608 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-27 19:43:19,609 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-27 19:43:19,609 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 19:43:19,609 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-27 19:43:19,609 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-27 19:43:19,612 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-27 19:43:19,615 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-27 19:43:19,615 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-27 19:43:19,616 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-27 19:43:19,624 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-27 19:43:19,626 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-27 19:43:19,626 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-27 19:43:19,627 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-27 19:43:19,627 - __main__ - INFO - Initializing v6-specific components...
+2025-11-27 19:43:19,628 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-27 19:43:19,628 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-27 19:43:19,628 - __main__ - INFO - Session manager initialized
+2025-11-27 19:43:19,628 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-27 19:43:19,629 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-27 19:43:19,629 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-27 19:43:19,629 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-27 19:43:19,629 - __main__ - INFO - Entity tracker initialized
+2025-11-27 19:43:19,636 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-27 19:43:19,636 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-27 19:43:19,636 - __main__ - INFO - Contextual resolver initialized
+2025-11-27 19:43:19,637 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-27 19:43:19,637 - __main__ - INFO - v6 components initialized successfully
+2025-11-27 19:43:19,637 - __main__ - INFO - ================================================================================
+2025-11-27 19:43:19,637 - __main__ - INFO - MCP Server v6 ready
+2025-11-27 19:43:19,637 - __main__ - INFO - ================================================================================
+2025-11-27 19:43:19,637 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-28 12:35:59,423 - __main__ - INFO - ================================================================================
+2025-11-28 12:35:59,424 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-11-28 12:35:59,424 - __main__ - INFO - ================================================================================
+2025-11-28 12:35:59,426 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-11-28 12:35:59,427 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-28 12:35:59,427 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-11-28 12:35:59,427 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-11-28 12:35:59,427 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-11-28 12:35:59,430 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-11-28 12:35:59,433 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-11-28 12:35:59,434 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-11-28 12:35:59,434 - __main__ - INFO - Loaded existing v6 snapshot
+2025-11-28 12:35:59,440 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-11-28 12:35:59,441 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-11-28 12:35:59,441 - __main__ - INFO - Loading v6-specific configuration...
+2025-11-28 12:35:59,443 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-11-28 12:35:59,443 - __main__ - INFO - Initializing v6-specific components...
+2025-11-28 12:35:59,444 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-11-28 12:35:59,444 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-11-28 12:35:59,444 - __main__ - INFO - Session manager initialized
+2025-11-28 12:35:59,444 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-11-28 12:35:59,444 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-11-28 12:35:59,444 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-11-28 12:35:59,445 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-11-28 12:35:59,445 - __main__ - INFO - Entity tracker initialized
+2025-11-28 12:35:59,447 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-11-28 12:35:59,448 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-11-28 12:35:59,448 - __main__ - INFO - Contextual resolver initialized
+2025-11-28 12:35:59,448 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-11-28 12:35:59,448 - __main__ - INFO - v6 components initialized successfully
+2025-11-28 12:35:59,448 - __main__ - INFO - ================================================================================
+2025-11-28 12:35:59,449 - __main__ - INFO - MCP Server v6 ready
+2025-11-28 12:35:59,449 - __main__ - INFO - ================================================================================
+2025-11-28 12:35:59,449 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-11-29 01:47:44,137 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-02 00:36:38,686 - __main__ - INFO - ================================================================================
+2025-12-02 00:36:38,687 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-02 00:36:38,687 - __main__ - INFO - ================================================================================
+2025-12-02 00:36:38,688 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-02 00:36:38,689 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-02 00:36:38,689 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-02 00:36:38,689 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-02 00:36:38,690 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-02 00:36:38,695 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-02 00:36:38,699 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-02 00:36:38,699 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-02 00:36:38,699 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-02 00:36:38,709 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-02 00:36:38,710 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-02 00:36:38,710 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-02 00:36:38,712 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-02 00:36:38,712 - __main__ - INFO - Initializing v6-specific components...
+2025-12-02 00:36:38,713 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-02 00:36:38,713 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-02 00:36:38,713 - __main__ - INFO - Session manager initialized
+2025-12-02 00:36:38,714 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-02 00:36:38,714 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-02 00:36:38,716 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-02 00:36:38,716 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-02 00:36:38,716 - __main__ - INFO - Entity tracker initialized
+2025-12-02 00:36:38,718 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-02 00:36:38,718 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-02 00:36:38,718 - __main__ - INFO - Contextual resolver initialized
+2025-12-02 00:36:38,718 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-02 00:36:38,719 - __main__ - INFO - v6 components initialized successfully
+2025-12-02 00:36:38,719 - __main__ - INFO - ================================================================================
+2025-12-02 00:36:38,719 - __main__ - INFO - MCP Server v6 ready
+2025-12-02 00:36:38,719 - __main__ - INFO - ================================================================================
+2025-12-02 00:36:38,719 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-02 00:42:26,668 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-02 21:10:59,950 - __main__ - INFO - ================================================================================
+2025-12-02 21:10:59,951 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-02 21:10:59,951 - __main__ - INFO - ================================================================================
+2025-12-02 21:10:59,954 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-02 21:10:59,954 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-02 21:10:59,954 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-02 21:10:59,955 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-02 21:10:59,955 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-02 21:10:59,958 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-02 21:10:59,961 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-02 21:10:59,961 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-02 21:10:59,961 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-02 21:10:59,968 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-02 21:10:59,969 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-02 21:10:59,969 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-02 21:10:59,971 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-02 21:10:59,971 - __main__ - INFO - Initializing v6-specific components...
+2025-12-02 21:10:59,971 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-02 21:10:59,972 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-02 21:10:59,972 - __main__ - INFO - Session manager initialized
+2025-12-02 21:10:59,972 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-02 21:10:59,972 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-02 21:10:59,972 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-02 21:10:59,973 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-02 21:10:59,973 - __main__ - INFO - Entity tracker initialized
+2025-12-02 21:10:59,974 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-02 21:10:59,974 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-02 21:10:59,974 - __main__ - INFO - Contextual resolver initialized
+2025-12-02 21:10:59,974 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-02 21:10:59,974 - __main__ - INFO - v6 components initialized successfully
+2025-12-02 21:10:59,974 - __main__ - INFO - ================================================================================
+2025-12-02 21:10:59,974 - __main__ - INFO - MCP Server v6 ready
+2025-12-02 21:10:59,975 - __main__ - INFO - ================================================================================
+2025-12-02 21:10:59,975 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-03 01:41:55,475 - __main__ - INFO - ================================================================================
+2025-12-03 01:41:55,476 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-03 01:41:55,476 - __main__ - INFO - ================================================================================
+2025-12-03 01:41:55,482 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-03 01:41:55,483 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 01:41:55,483 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-03 01:41:55,484 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-03 01:41:55,484 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-03 01:41:55,489 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 01:41:55,497 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-03 01:41:55,497 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-03 01:41:55,498 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-03 01:41:56,291 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-03 01:41:56,292 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-03 01:41:56,293 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-03 01:41:56,305 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-03 01:41:56,305 - __main__ - INFO - Initializing v6-specific components...
+2025-12-03 01:41:56,306 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-03 01:41:56,306 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-03 01:41:56,306 - __main__ - INFO - Session manager initialized
+2025-12-03 01:41:56,306 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-03 01:41:56,307 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-03 01:41:56,307 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-03 01:41:56,307 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-03 01:41:56,307 - __main__ - INFO - Entity tracker initialized
+2025-12-03 01:41:56,309 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-03 01:41:56,309 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-03 01:41:56,309 - __main__ - INFO - Contextual resolver initialized
+2025-12-03 01:41:56,309 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-03 01:41:56,309 - __main__ - INFO - v6 components initialized successfully
+2025-12-03 01:41:56,310 - __main__ - INFO - ================================================================================
+2025-12-03 01:41:56,310 - __main__ - INFO - MCP Server v6 ready
+2025-12-03 01:41:56,310 - __main__ - INFO - ================================================================================
+2025-12-03 01:41:56,310 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-03 03:18:33,743 - __main__ - INFO - ================================================================================
+2025-12-03 03:18:33,745 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-03 03:18:33,745 - __main__ - INFO - ================================================================================
+2025-12-03 03:18:33,746 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-03 03:18:33,747 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 03:18:33,747 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-03 03:18:33,748 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-03 03:18:33,748 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-03 03:18:33,751 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 03:18:33,755 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-03 03:18:33,755 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-03 03:18:33,755 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-03 03:18:33,766 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-03 03:18:33,766 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-03 03:18:33,767 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-03 03:18:33,769 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-03 03:18:33,769 - __main__ - INFO - Initializing v6-specific components...
+2025-12-03 03:18:33,770 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-03 03:18:33,770 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-03 03:18:33,770 - __main__ - INFO - Session manager initialized
+2025-12-03 03:18:33,771 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-03 03:18:33,771 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-03 03:18:33,771 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-03 03:18:33,772 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-03 03:18:33,772 - __main__ - INFO - Entity tracker initialized
+2025-12-03 03:18:33,777 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-03 03:18:33,778 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-03 03:18:33,778 - __main__ - INFO - Contextual resolver initialized
+2025-12-03 03:18:33,778 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-03 03:18:33,778 - __main__ - INFO - v6 components initialized successfully
+2025-12-03 03:18:33,778 - __main__ - INFO - ================================================================================
+2025-12-03 03:18:33,779 - __main__ - INFO - MCP Server v6 ready
+2025-12-03 03:18:33,779 - __main__ - INFO - ================================================================================
+2025-12-03 03:18:33,779 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-03 11:45:21,247 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-03 13:45:31,659 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:31,660 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-03 13:45:31,661 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:31,664 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-03 13:45:31,665 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 13:45:31,665 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-03 13:45:31,665 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-03 13:45:31,666 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-03 13:45:31,671 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 13:45:31,679 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-03 13:45:31,680 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-03 13:45:31,680 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-03 13:45:31,701 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-03 13:45:31,703 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-03 13:45:31,704 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-03 13:45:31,706 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-03 13:45:31,706 - __main__ - INFO - Initializing v6-specific components...
+2025-12-03 13:45:31,707 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-03 13:45:31,707 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-03 13:45:31,708 - __main__ - INFO - Session manager initialized
+2025-12-03 13:45:31,708 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-03 13:45:31,709 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-03 13:45:31,710 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-03 13:45:31,710 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-03 13:45:31,711 - __main__ - INFO - Entity tracker initialized
+2025-12-03 13:45:31,714 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-03 13:45:31,714 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-03 13:45:31,714 - __main__ - INFO - Contextual resolver initialized
+2025-12-03 13:45:31,715 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-03 13:45:31,715 - __main__ - INFO - v6 components initialized successfully
+2025-12-03 13:45:31,715 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:31,715 - __main__ - INFO - MCP Server v6 ready
+2025-12-03 13:45:31,715 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:31,716 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-03 13:45:57,092 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:57,092 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-03 13:45:57,093 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:57,097 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-03 13:45:57,098 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 13:45:57,099 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-03 13:45:57,099 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-03 13:45:57,099 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-03 13:45:57,102 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-03 13:45:57,104 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-03 13:45:57,104 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-03 13:45:57,104 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-03 13:45:57,809 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-03 13:45:57,810 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-03 13:45:57,810 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-03 13:45:57,811 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-03 13:45:57,812 - __main__ - INFO - Initializing v6-specific components...
+2025-12-03 13:45:57,812 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-03 13:45:57,813 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-03 13:45:57,813 - __main__ - INFO - Session manager initialized
+2025-12-03 13:45:57,813 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-03 13:45:57,814 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-03 13:45:57,814 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-03 13:45:57,815 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-03 13:45:57,815 - __main__ - INFO - Entity tracker initialized
+2025-12-03 13:45:57,818 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-03 13:45:57,818 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-03 13:45:57,818 - __main__ - INFO - Contextual resolver initialized
+2025-12-03 13:45:57,819 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-03 13:45:57,819 - __main__ - INFO - v6 components initialized successfully
+2025-12-03 13:45:57,819 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:57,819 - __main__ - INFO - MCP Server v6 ready
+2025-12-03 13:45:57,819 - __main__ - INFO - ================================================================================
+2025-12-03 13:45:57,819 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-03 16:24:15,669 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-03 16:24:21,542 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-14 23:44:22,449 - __main__ - INFO - ================================================================================
+2025-12-14 23:44:22,451 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-14 23:44:22,451 - __main__ - INFO - ================================================================================
+2025-12-14 23:44:22,454 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-14 23:44:22,455 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:44:22,455 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-14 23:44:22,455 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-14 23:44:22,456 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-14 23:44:22,458 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:44:22,465 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-14 23:44:22,465 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-14 23:44:22,465 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-14 23:44:22,476 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-14 23:44:22,480 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-14 23:44:22,481 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-14 23:44:22,490 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-14 23:44:22,491 - __main__ - INFO - Initializing v6-specific components...
+2025-12-14 23:44:22,492 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-14 23:44:22,497 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-14 23:44:22,498 - __main__ - INFO - Session manager initialized
+2025-12-14 23:44:22,498 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-14 23:44:22,499 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-14 23:44:22,502 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-14 23:44:22,503 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-14 23:44:22,504 - __main__ - INFO - Entity tracker initialized
+2025-12-14 23:44:22,506 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-14 23:44:22,507 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-14 23:44:22,507 - __main__ - INFO - Contextual resolver initialized
+2025-12-14 23:44:22,508 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-14 23:44:22,508 - __main__ - INFO - v6 components initialized successfully
+2025-12-14 23:44:22,508 - __main__ - INFO - ================================================================================
+2025-12-14 23:44:22,508 - __main__ - INFO - MCP Server v6 ready
+2025-12-14 23:44:22,509 - __main__ - INFO - ================================================================================
+2025-12-14 23:44:22,509 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-14 23:56:32,821 - __main__ - INFO - Server stopped
+2025-12-14 23:56:32,821 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-14 23:57:17,815 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:17,853 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-14 23:57:17,859 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:17,878 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-14 23:57:17,885 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:57:17,885 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-14 23:57:17,886 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-14 23:57:17,887 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-14 23:57:17,891 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:57:17,894 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-14 23:57:17,907 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-14 23:57:17,909 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-14 23:57:17,936 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-14 23:57:17,938 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-14 23:57:17,938 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-14 23:57:17,940 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-14 23:57:17,941 - __main__ - INFO - Initializing v6-specific components...
+2025-12-14 23:57:17,944 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-14 23:57:17,945 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-14 23:57:17,945 - __main__ - INFO - Session manager initialized
+2025-12-14 23:57:17,946 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-14 23:57:17,947 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-14 23:57:17,948 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-14 23:57:17,950 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-14 23:57:17,952 - __main__ - INFO - Entity tracker initialized
+2025-12-14 23:57:17,955 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-14 23:57:17,958 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-14 23:57:17,959 - __main__ - INFO - Contextual resolver initialized
+2025-12-14 23:57:17,964 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-14 23:57:17,964 - __main__ - INFO - v6 components initialized successfully
+2025-12-14 23:57:17,965 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:17,966 - __main__ - INFO - MCP Server v6 ready
+2025-12-14 23:57:17,966 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:17,967 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-14 23:57:56,336 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:56,337 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-14 23:57:56,337 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:56,338 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-14 23:57:56,339 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:57:56,340 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-14 23:57:56,340 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-14 23:57:56,341 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-14 23:57:56,345 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:57:56,347 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-14 23:57:56,348 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-14 23:57:56,348 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-14 23:57:56,369 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-14 23:57:56,370 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-14 23:57:56,371 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-14 23:57:56,372 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-14 23:57:56,372 - __main__ - INFO - Initializing v6-specific components...
+2025-12-14 23:57:56,374 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-14 23:57:56,374 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-14 23:57:56,374 - __main__ - INFO - Session manager initialized
+2025-12-14 23:57:56,375 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-14 23:57:56,376 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-14 23:57:56,376 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-14 23:57:56,377 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-14 23:57:56,378 - __main__ - INFO - Entity tracker initialized
+2025-12-14 23:57:56,381 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-14 23:57:56,381 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-14 23:57:56,381 - __main__ - INFO - Contextual resolver initialized
+2025-12-14 23:57:56,381 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-14 23:57:56,381 - __main__ - INFO - v6 components initialized successfully
+2025-12-14 23:57:56,382 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:56,382 - __main__ - INFO - MCP Server v6 ready
+2025-12-14 23:57:56,382 - __main__ - INFO - ================================================================================
+2025-12-14 23:57:56,383 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-14 23:57:56,385 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-14 23:59:14,377 - __main__ - INFO - ================================================================================
+2025-12-14 23:59:14,378 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-14 23:59:14,378 - __main__ - INFO - ================================================================================
+2025-12-14 23:59:14,379 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-14 23:59:14,379 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:59:14,379 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-14 23:59:14,379 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-14 23:59:14,379 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-14 23:59:14,381 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-14 23:59:14,383 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-14 23:59:14,383 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-14 23:59:14,383 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-14 23:59:14,389 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-14 23:59:14,390 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-14 23:59:14,390 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-14 23:59:14,390 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-14 23:59:14,391 - __main__ - INFO - Initializing v6-specific components...
+2025-12-14 23:59:14,391 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-14 23:59:14,391 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-14 23:59:14,391 - __main__ - INFO - Session manager initialized
+2025-12-14 23:59:14,392 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-14 23:59:14,393 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-14 23:59:14,393 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-14 23:59:14,395 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-14 23:59:14,396 - __main__ - INFO - Entity tracker initialized
+2025-12-14 23:59:14,401 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-14 23:59:14,404 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-14 23:59:14,404 - __main__ - INFO - Contextual resolver initialized
+2025-12-14 23:59:14,405 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-14 23:59:14,405 - __main__ - INFO - v6 components initialized successfully
+2025-12-14 23:59:14,405 - __main__ - INFO - ================================================================================
+2025-12-14 23:59:14,406 - __main__ - INFO - MCP Server v6 ready
+2025-12-14 23:59:14,406 - __main__ - INFO - ================================================================================
+2025-12-14 23:59:14,406 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-14 23:59:14,407 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-15 00:11:15,015 - v6 - INFO - ================================================================================
+2025-12-15 00:11:15,053 - v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-15 00:11:15,169 - v6 - INFO - ================================================================================
+2025-12-15 00:11:15,254 - v6 - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-15 00:11:15,265 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:11:15,267 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-15 00:11:15,268 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-15 00:11:15,277 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-15 00:11:15,292 - v6 - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:11:15,297 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-15 00:11:15,299 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-15 00:11:15,304 - v6 - INFO - Loaded existing v6 snapshot
+2025-12-15 00:11:15,313 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-15 00:11:15,314 - v6 - INFO - HNSW index loaded from v6 MP4
+2025-12-15 00:11:15,316 - v6 - INFO - Loading v6-specific configuration...
+2025-12-15 00:11:15,317 - v6 - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-15 00:11:15,319 - v6 - INFO - Initializing v6-specific components...
+2025-12-15 00:11:15,322 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-15 00:11:15,323 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-15 00:11:15,324 - v6 - INFO - Session manager initialized
+2025-12-15 00:11:15,326 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-15 00:11:15,327 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-15 00:11:15,328 - v6 - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-15 00:11:15,329 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-15 00:11:15,330 - v6 - INFO - Entity tracker initialized
+2025-12-15 00:11:15,334 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-15 00:11:15,335 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-15 00:11:15,336 - v6 - INFO - Contextual resolver initialized
+2025-12-15 00:11:15,336 - v6 - INFO - TOON initialized: 3500 tokens available
+2025-12-15 00:11:15,338 - v6 - INFO - v6 components initialized successfully
+2025-12-15 00:11:15,339 - v6 - INFO - ================================================================================
+2025-12-15 00:11:15,339 - v6 - INFO - MCP Server v6 ready
+2025-12-15 00:11:15,341 - v6 - INFO - ================================================================================
+2025-12-15 00:11:15,402 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-15 00:14:35,875 - __main__ - INFO - Server stopped
+2025-12-15 00:14:35,877 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-15 00:19:09,280 - __main__ - INFO - ================================================================================
+2025-12-15 00:19:09,281 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-15 00:19:09,281 - __main__ - INFO - ================================================================================
+2025-12-15 00:19:09,282 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-15 00:19:09,282 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:19:09,283 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-15 00:19:09,283 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-15 00:19:09,283 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-15 00:19:09,285 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:19:09,286 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-15 00:19:09,286 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-15 00:19:09,286 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-15 00:19:09,292 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-15 00:19:09,293 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-15 00:19:09,293 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-15 00:19:09,294 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-15 00:19:09,294 - __main__ - INFO - Initializing v6-specific components...
+2025-12-15 00:19:09,295 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-15 00:19:09,295 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-15 00:19:09,295 - __main__ - INFO - Session manager initialized
+2025-12-15 00:19:09,296 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-15 00:19:09,297 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-15 00:19:09,297 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-15 00:19:09,298 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-15 00:19:09,298 - __main__ - INFO - Entity tracker initialized
+2025-12-15 00:19:09,300 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-15 00:19:09,300 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-15 00:19:09,300 - __main__ - INFO - Contextual resolver initialized
+2025-12-15 00:19:09,301 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-15 00:19:09,301 - __main__ - INFO - v6 components initialized successfully
+2025-12-15 00:19:09,301 - __main__ - INFO - ================================================================================
+2025-12-15 00:19:09,301 - __main__ - INFO - MCP Server v6 ready
+2025-12-15 00:19:09,302 - __main__ - INFO - ================================================================================
+2025-12-15 00:19:09,302 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-15 00:47:26,543 - __main__ - INFO - Server stopped
+2025-12-15 00:47:26,544 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-15 00:47:43,476 - __main__ - INFO - ================================================================================
+2025-12-15 00:47:43,476 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-15 00:47:43,477 - __main__ - INFO - ================================================================================
+2025-12-15 00:47:43,478 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-15 00:47:43,478 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:47:43,480 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-15 00:47:43,480 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-15 00:47:43,480 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-15 00:47:43,481 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:47:43,483 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-15 00:47:43,483 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-15 00:47:43,484 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-15 00:47:43,490 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-15 00:47:43,491 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-15 00:47:43,491 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-15 00:47:43,492 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-15 00:47:43,492 - __main__ - INFO - Initializing v6-specific components...
+2025-12-15 00:47:43,493 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-15 00:47:43,494 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-15 00:47:43,494 - __main__ - INFO - Session manager initialized
+2025-12-15 00:47:43,495 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-15 00:47:43,495 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-15 00:47:43,496 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-15 00:47:43,496 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-15 00:47:43,497 - __main__ - INFO - Entity tracker initialized
+2025-12-15 00:47:43,499 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-15 00:47:43,499 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-15 00:47:43,500 - __main__ - INFO - Contextual resolver initialized
+2025-12-15 00:47:43,500 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-15 00:47:43,500 - __main__ - INFO - v6 components initialized successfully
+2025-12-15 00:47:43,501 - __main__ - INFO - ================================================================================
+2025-12-15 00:47:43,501 - __main__ - INFO - MCP Server v6 ready
+2025-12-15 00:47:43,501 - __main__ - INFO - ================================================================================
+2025-12-15 00:47:43,503 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-15 00:55:17,831 - __main__ - INFO - Server stopped
+2025-12-15 00:55:17,894 - storage.mp4_storage - INFO - MP4 storage closed
+2025-12-15 00:56:42,143 - __main__ - INFO - ================================================================================
+2025-12-15 00:56:42,145 - __main__ - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2025-12-15 00:56:42,146 - __main__ - INFO - ================================================================================
+2025-12-15 00:56:42,294 - __main__ - INFO - Base configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v5_config.json
+2025-12-15 00:56:42,430 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:56:42,560 - storage.vector_engine - INFO - VectorEngine configured for model: sentence-transformers/all-MiniLM-L6-v2
+2025-12-15 00:56:42,693 - storage.vector_engine - INFO - Model will be loaded on first use (lazy loading)
+2025-12-15 00:56:42,749 - storage.vector_engine - INFO - VectorEngine initialized with dimension=384
+2025-12-15 00:56:42,756 - __main__ - INFO - Attempting to load v6 snapshot from: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2025-12-15 00:56:42,991 - storage.mp4_storage - INFO - Memory map opened for vector access
+2025-12-15 00:56:43,080 - storage.mp4_storage - INFO - Loaded snapshot with 16 chunks
+2025-12-15 00:56:43,116 - __main__ - INFO - Loaded existing v6 snapshot
+2025-12-15 00:56:43,378 - storage.vector_engine - INFO - Loaded HNSW index with 16 vectors
+2025-12-15 00:56:43,434 - __main__ - INFO - HNSW index loaded from v6 MP4
+2025-12-15 00:56:43,475 - __main__ - INFO - Loading v6-specific configuration...
+2025-12-15 00:56:43,573 - __main__ - INFO - v6 configuration loaded from C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\config\v6_config.json
+2025-12-15 00:56:43,594 - __main__ - INFO - Initializing v6-specific components...
+2025-12-15 00:56:43,652 - storage.session_storage - INFO - SessionStorage initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\sessions
+2025-12-15 00:56:43,659 - memory.session_manager - INFO - SessionManager initialized (strategy=trimming, auto_save=True)
+2025-12-15 00:56:43,785 - __main__ - INFO - Session manager initialized
+2025-12-15 00:56:43,884 - indexing.code_indexer - INFO - CodeIndexer initialized: C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\code_index
+2025-12-15 00:56:43,985 - indexing.code_indexer - INFO - Index loaded: 0 functions, 0 classes, 0 modules
+2025-12-15 00:56:44,060 - __main__ - INFO - Code index loaded: {'total_modules': 0, 'total_functions': 0, 'total_classes': 0}
+2025-12-15 00:56:44,161 - indexing.entity_tracker - INFO - EntityTracker initialized
+2025-12-15 00:56:44,308 - __main__ - INFO - Entity tracker initialized
+2025-12-15 00:56:44,447 - resolution.reference_detector - INFO - ReferenceDetector initialized
+2025-12-15 00:56:44,478 - resolution.contextual_resolver - INFO - ContextualResolver initialized
+2025-12-15 00:56:44,584 - __main__ - INFO - Contextual resolver initialized
+2025-12-15 00:56:44,657 - __main__ - INFO - TOON initialized: 3500 tokens available
+2025-12-15 00:56:44,694 - __main__ - INFO - v6 components initialized successfully
+2025-12-15 00:56:44,760 - __main__ - INFO - ================================================================================
+2025-12-15 00:56:44,881 - __main__ - INFO - MCP Server v6 ready
+2025-12-15 00:56:44,972 - __main__ - INFO - ================================================================================
+2025-12-15 00:56:45,029 - __main__ - INFO - Server ready - waiting for requests on stdin
+2025-12-15 00:57:31,857 - __main__ - INFO - Server stopped
+2025-12-15 00:57:31,997 - storage.mp4_storage - INFO - MP4 storage closed
+2026-01-15 10:20:37,759 - core.v6 - INFO - ================================================================================
+2026-01-15 10:20:37,760 - core.v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2026-01-15 10:20:37,760 - core.v6 - INFO - ================================================================================
+2026-01-15 10:49:17,826 - v6 - INFO - ================================================================================
+2026-01-15 10:49:17,827 - v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2026-01-15 10:49:17,828 - v6 - INFO - ================================================================================
+2026-01-15 10:49:57,259 - v6 - INFO - ================================================================================
+2026-01-15 10:49:57,261 - v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2026-01-15 10:49:57,261 - v6 - INFO - ================================================================================
+2026-01-15 10:50:43,028 - v6 - INFO - ================================================================================
+2026-01-15 10:50:43,028 - v6 - INFO - MCP Server v6 - Session Memory + Contextual Resolution
+2026-01-15 10:50:43,029 - v6 - INFO - ================================================================================
+2026-01-15 10:50:43,032 - v6 - INFO - 🔧 TOOL EXECUTED: test_tool
+2026-01-15 10:50:43,032 - v6 - INFO -    Args: {"param": "value"}...
+2026-01-15 10:50:43,034 - v6 - INFO -    Result: {'result': 'success'}...
+2026-01-15 10:50:43,035 - v6 - INFO - ------------------------------------------------------------
+2026-01-15 10:50:43,036 - v6 - INFO - ------------------------------------------------------------
+2026-01-15 10:50:43,037 - storage.mp4_storage - INFO - Initialized MP4Storage at C:\Users\0x4171341\Desktop\CONSULTORIO\yari-medic\mcp-hub-v6\data\context_vectors_v6.mp4
+2026-01-15 10:50:43,262 - storage.mp4_storage - INFO - MP4 storage closed

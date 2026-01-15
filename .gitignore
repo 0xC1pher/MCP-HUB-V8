@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+activate_venv.bat
+activate_venv.sh
+_test_import.py
+.git
+
+# Logs
+#*.log
+#logs/
+
+#person
+#feature.md
+# Environment variables
+.env
+
+# IDE specific files
+.vscode/
+.idea/
+.windsurfrules
+.windsurfrules
+.windsurf
+.cursor
+.trae
+
+
+
+
+# Local development
+*.swp
+*.swo
+
+# Cache
+dist/
+build/
+*.egg-info/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.backup
+*.bak

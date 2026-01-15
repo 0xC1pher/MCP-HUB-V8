@@ -1,0 +1,52 @@
+{
+    "version": "6.0.0",
+    "session": {
+        "enabled": true,
+        "default_type": "trimming",
+        "auto_save": true,
+        "retention_days": 30,
+        "trimming": {
+            "max_turns": 8
+        },
+        "summarizing": {
+            "keep_last_n_turns": 3,
+            "context_limit": 10
+        }
+    },
+    "code_indexing": {
+        "enabled": true,
+        "extensions": [
+            ".py",
+            ".js",
+            ".ts"
+        ],
+        "exclude_dirs": [
+            "venv",
+            "node_modules",
+            ".git",
+            "__pycache__",
+            "dist",
+            "build"
+        ],
+        "index_on_startup": false
+    },
+    "entity_tracking": {
+        "enabled": true,
+        "track_functions": true,
+        "track_classes": true,
+        "track_variables": false
+    },
+    "contextual_resolution": {
+        "enabled": true,
+        "min_confidence": 0.6,
+        "max_history_turns": 5
+    },
+    "toon": {
+        "enabled": true,
+        "max_tokens": 4000,
+        "reserved_tokens": 500,
+        "cache_integration": true,
+        "cache_hit_bonus": 0.1,
+        "dynamic_adjustment": true
+    }
+}

@@ -1,0 +1,26 @@
+INSTRUCCIONES PARA USO DEL MCP CONTEXT-QUERY (MEMORIA & CONTEXTO)
+
+El MCP solo debe fundamentar sus respuestas en memoria técnica y contexto operativo.
+Para temas de negocio o producto, limita el conocimiento a lo documentado en
+feature.md o a lo que el usuario exprese durante la entrevista inicial.
+
+FUENTES PERMITIDAS:
+1. `feature.md`: reglas críticas, flujos obligatorios y capacidades avanzadas.
+2. Documentos de memoria (`model.md`, `checklist.md`, `changelog.md`).
+3. Respuestas capturadas en la entrevista (payload de `ProjectKnowledgeManager`).
+4. Historial de feedback técnico y métricas registradas por el orquestador.
+
+DIRECTRICES DE CONSULTA:
+- Formula preguntas específicas (secciones, reglas, pasos concretos).
+- Evita pedidos genéricos como "dame todo"; prioriza fragmentos relevantes.
+- Si el contexto no responde la duda, solicita aclaraciones al usuario.
+- Cuando se mencione negocio, confirma que la información provenga de feature.md
+  o de la entrevista; de lo contrario, indica que no hay datos disponibles.
+- Usa el contexto recuperado para justificar recomendaciones técnicas.
+
+EJEMPLOS DE BUENAS PREGUNTAS:
+✅ "¿Qué dice feature.md sobre virtual chunks y almacenamiento MP4?"
+✅ "¿Cuáles son las reglas críticas listadas en feature.md?"
+✅ "¿Qué contexto proporcionó la entrevista sobre restricciones técnicas?"
+❌ "¿Cuál es la estrategia comercial del proyecto?"
+❌ "Dame toda la información del repositorio"
