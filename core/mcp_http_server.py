@@ -1166,6 +1166,24 @@ def graceful_shutdown(logger=None):
 # Entry Point
 # ============================================
 
+def find_available_port(start_port: int = 8765, max_attempts: int = 10) -> int:
+    """
+    Find an available port starting from start_port.
+    Tries up to max_attempts ports.
+    """
+    import socket
+    
+    for port in range(start_port, start_port + max_attempts):
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+                s.bind(('127.0.0.1', port))
+                return port
+        except OSError:
+            continue
+    
+    raise RuntimeError(f"No available port found in range {start_port}-{start_port + max_attempts}")
+
+
 if __name__ == "__main__":
     import uvicorn
     import signal
@@ -1187,10 +1205,16 @@ if __name__ == "__main__":
         signal.signal(signal.SIGINT, signal_handler)
         signal.signal(signal.SIGTERM, signal_handler)
         
+        # Buscar puerto disponible dinámicamente
+        port = find_available_port(8765)
+        
         # Header bonito
         main_logger.header("Yari Medic - MCP Hub v8.0", "Extended Knowledge + Quality Guardian")
         
-        main_logger.info("Iniciando servidor...", endpoint="http://127.0.0.1:8765/sse")
+        if port != 8765:
+            main_logger.warning(f"Puerto 8765 ocupado, usando puerto alternativo: {port}")
+        
+        main_logger.info("Iniciando servidor...", endpoint=f"http://127.0.0.1:{port}/sse")
         
         print("\nTools disponibles (24):", file=sys.stderr)
         print("  🔷 V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
@@ -1200,15 +1224,18 @@ if __name__ == "__main__":
         print("  🧠 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
         print("  📚 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
         print("  🛡️ Quality: check_quality, get_quality_principles", file=sys.stderr)
-        print("\n💾 Presiona Ctrl+C para guardar y cerrar correctamente", file=sys.stderr)
+        print(f"\n🌐 Endpoint: http://127.0.0.1:{port}/sse", file=sys.stderr)
+        print("💾 Presiona Ctrl+C para guardar y cerrar correctamente", file=sys.stderr)
         main_logger.divider()
         
         app = mcp.sse_app()
         
         # log_config=None evita que Uvicorn formatee los logs (dejando que PrettyLogger lo haga)
-        uvicorn.run(app, host="127.0.0.1", port=8765, log_config=None)
+        uvicorn.run(app, host="127.0.0.1", port=port, log_config=None)
         
     except ImportError:
+        import socket
+        
         # Fallback si falla pretty_logger
         def signal_handler(sig, frame):
             graceful_shutdown(None)
@@ -1216,14 +1243,20 @@ if __name__ == "__main__":
         
         signal.signal(signal.SIGINT, signal_handler)
         
+        # Buscar puerto disponible
+        port = find_available_port(8765)
+        
         print("=" * 60, file=sys.stderr)
         print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
-        print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
+        if port != 8765:
+            print(f"⚠️ Puerto 8765 ocupado, usando: {port}", file=sys.stderr)
+        print(f"Endpoint: http://127.0.0.1:{port}/sse", file=sys.stderr)
         print("💾 Presiona Ctrl+C para guardar y cerrar", file=sys.stderr)
         print("=" * 60, file=sys.stderr)
         
         app = mcp.sse_app()
-        uvicorn.run(app, host="127.0.0.1", port=8765)
+        uvicorn.run(app, host="127.0.0.1", port=port)
+
 
 
 
