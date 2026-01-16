@@ -391,47 +391,93 @@ optimize_configuration
 
 ---
 
-## 11. Referencia Rápida de Comandos
+## 11. Referencia Rápida de Comandos (24 Tools)
 
-### Sesiones
+### 🔷 Core (4 tools)
 ```
-create_session(session_id, session_type, strategy)
-get_session_summary(session_id)
-list_sessions()
-delete_session(session_id)
-```
-
-### Búsqueda
-```
-get_context(query, top_k, min_score, session_id)
-validate_response(response, evidence)
-search_entity(name, entity_type)
+ping()                                    # Test de conexión
+get_context(query, top_k, min_score)     # Recuperar contexto
+validate_response(response, evidence)     # Validar contra evidencia
+index_status()                           # Estado del índice
 ```
 
-### Indexación
+### 📁 Sessions (4 tools)
 ```
-index_code(directory, recursive)
-index_status()
-```
-
-### Avanzado
-```
-process_advanced(query, documents, domain)
-expand_query(query, max_expansions, strategies)
-chunk_document(content, file_path, min_size, max_size)
+create_session(session_id, session_type, strategy)  # Crear sesión manual
+get_session_summary(session_id)                     # Resumen de sesión
+list_sessions()                                     # Listar sesiones
+delete_session(session_id)                          # Eliminar sesión
 ```
 
-### Sistema
+### 💻 Code (2 tools)
 ```
-ping()
-get_system_status()
-add_feedback(query, result_doc_id, relevance_score, was_helpful)
-optimize_configuration()
+index_code(directory, recursive)          # Indexar código
+search_entity(name, entity_type)          # Buscar funciones/clases
+```
+
+### ⚡ Advanced (6 tools)
+```
+process_advanced(query, documents, domain)                    # Procesamiento completo
+expand_query(query, max_expansions, strategies)               # Expandir query
+chunk_document(content, file_path, min_size, max_size)       # Chunking dinámico
+get_system_status()                                           # Estado del sistema
+add_feedback(query, result_doc_id, relevance_score, was_helpful)  # Agregar feedback
+optimize_configuration()                                      # Optimizar configuración
+```
+
+### 🧠 Smart Session (3 tools) - NUEVO v8
+```
+smart_session_init(project_path, context, force_new)   # Inicialización inteligente
+smart_query(query, project_path)                       # Query con auto-sesión
+get_smart_status()                                     # Estado del orquestador
+```
+
+### 📚 Extended Knowledge (3 tools) - NUEVO v8
+```
+extended_index(directory, recursive)     # Indexar conocimiento extendido
+extended_search(query)                   # Buscar constants, APIs, models
+get_knowledge_summary()                  # Resumen de conocimiento
+```
+
+### 🛡️ Quality Guardian (2 tools) - NUEVO v8
+```
+check_quality(code)                      # Verificar calidad del código
+get_quality_principles()                 # Obtener principios de calidad
 ```
 
 ---
 
-## 12. FAQ
+## 12. Quality Guardian - Principios Siempre Activos
+
+El MCP v8 incluye un **Quality Guardian** que recuerda estos principios en cada respuesta:
+
+| Principio | Descripción | Pregunta Clave |
+|-----------|-------------|----------------|
+| 🚫 **No Redundancia** | No crear código redundante | ¿Existe algo similar que pueda reutilizar? |
+| 🔄 **No Duplicación** | No copiar código | ¿Estoy copiando código existente? |
+| 📈 **Escalabilidad** | Diseñar para crecimiento | ¿Funcionará con 10x más datos? |
+| 🎯 **Responsabilidad Única** | Una función = una tarea | ¿Esta función hace más de una cosa? |
+| 🏜️ **DRY** | Don't Repeat Yourself | ¿Hay lógica repetida? |
+
+---
+
+## 13. Extended Knowledge - Conocimiento Extendido
+
+El indexador extendido detecta más que funciones y clases:
+
+| Tipo | Detección |
+|------|-----------|
+| 📌 **Constantes** | Variables MAYÚSCULAS y configuraciones |
+| 🌐 **API Endpoints** | Django, Flask, FastAPI routes |
+| 📦 **Data Models** | Django models, Pydantic, dataclass, SQLAlchemy |
+| 🎨 **Design Patterns** | Singleton, Factory, Observer, Decorator |
+| 📝 **TODOs** | TODO, FIXME, HACK, NOTE, XXX |
+| 🔗 **Dependencies** | Imports y relaciones entre módulos |
+
+---
+
+## 14. FAQ
+
 
 ### ¿Necesito iniciar el servidor cada vez?
 Sí, el servidor debe estar corriendo antes de usar Antigravity con MCP.
@@ -449,9 +495,10 @@ Sí, puedes eliminar archivos en `data/` para reiniciar. El sistema los recrear�
 Sí, todo funciona localmente excepto el modelo de embeddings que se descarga una vez.
 
 ### ¿Puedo usar múltiples proyectos?
-Sí, crea una sesión diferente para cada proyecto.
+Sí, usa `smart_session_init` para cada proyecto - maneja sesiones automáticamente.
 
 ---
 
-**Última actualización**: 2025-12-15  
-**Versión**: MCP Hub v7.0
+**Última actualización**: 2026-01-15  
+**Versión**: MCP Hub v8.0 - Extended Knowledge + Quality Guardian
+
