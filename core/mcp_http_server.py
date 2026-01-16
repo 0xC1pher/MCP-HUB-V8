@@ -42,6 +42,13 @@ sys.path.insert(0, str(current_dir))
 
 from mcp.server.fastmcp import FastMCP
 
+# Import Pretty Logger for beautiful logging
+try:
+    from pretty_logger import get_logger
+    _tool_logger = get_logger("MCP-Tools")
+except ImportError:
+    _tool_logger = None
+
 # Create server
 mcp = FastMCP("yari-mcp-v7")
 
@@ -97,6 +104,9 @@ async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, sessio
         Context results with provenance information
     """
     try:
+        if _tool_logger:
+            _tool_logger.query(query, top_k=top_k, session=session_id or "none")
+        
         server = get_v6_server()
         result = server._get_context({
             'query': query,
@@ -108,6 +118,8 @@ async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, sessio
             return result['content'][0].get('text', 'No context found')
         return "No context found"
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error(f"Query failed: {query[:30]}...", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -183,6 +195,9 @@ async def create_session(session_id: str, session_type: str = "general", strateg
         Confirmation of session creation with details
     """
     try:
+        if _tool_logger:
+            _tool_logger.session("Creating", session_id, type=session_type, strategy=strategy)
+        
         server = get_v6_server()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
@@ -194,10 +209,16 @@ async def create_session(session_id: str, session_type: str = "general", strateg
             })
         )
         loop.close()
+        
+        if _tool_logger:
+            _tool_logger.success(f"Session created: {session_id}")
+        
         if 'content' in result and result['content']:
             return result['content'][0].get('text', 'Session created')
         return "Session created"
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error(f"Session creation failed: {session_id}", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -293,6 +314,9 @@ async def index_code(directory: str, recursive: bool = True) -> str:
         Indexing statistics including files, functions, and classes indexed
     """
     try:
+        if _tool_logger:
+            _tool_logger.index(f"Indexing: {directory}", recursive=recursive)
+        
         server = get_v6_server()
         loop = asyncio.new_event_loop()
         asyncio.set_event_loop(loop)
@@ -303,10 +327,16 @@ async def index_code(directory: str, recursive: bool = True) -> str:
             })
         )
         loop.close()
+        
+        if _tool_logger:
+            _tool_logger.success(f"Indexed: {directory}")
+        
         if 'content' in result and result['content']:
             return result['content'][0].get('text', 'Indexing complete')
         return "Indexing complete"
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error(f"Indexing failed: {directory}", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -662,6 +692,9 @@ async def smart_session_init(project_path: Optional[str] = None, context: str = 
         -> Creates or reuses a "feature" type session for my-app
     """
     try:
+        if _tool_logger:
+            _tool_logger.tool("smart_session_init", project=project_path or "auto", context=context[:30] if context else "none")
+        
         orchestrator = get_smart_orchestrator()
         if not orchestrator:
             return "Error: Smart orchestrator not available"
@@ -671,6 +704,11 @@ async def smart_session_init(project_path: Optional[str] = None, context: str = 
             context=context,
             force_new_session=force_new
         )
+        
+        # Log result
+        if _tool_logger and result.get("session_id"):
+            status = "NEW" if result.get("is_new") else "REUSED"
+            _tool_logger.session(status, result['session_id'], type=result.get('session_type', 'general'))
         
         output = "=== Smart Session Initialization ===\n\n"
         
@@ -690,6 +728,8 @@ async def smart_session_init(project_path: Optional[str] = None, context: str = 
         
         return output
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error("smart_session_init failed", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -711,6 +751,9 @@ async def smart_query(query: str, project_path: Optional[str] = None) -> str:
         Query results with session context
     """
     try:
+        if _tool_logger:
+            _tool_logger.tool("smart_query", query=query[:40])
+        
         orchestrator = get_smart_orchestrator()
         if not orchestrator:
             return "Error: Smart orchestrator not available"
@@ -718,7 +761,12 @@ async def smart_query(query: str, project_path: Optional[str] = None) -> str:
         result = await orchestrator.smart_query(query, project_path, auto_session=True)
         
         if "error" in result:
+            if _tool_logger:
+                _tool_logger.error(f"smart_query failed", error=result['error'])
             return f"Error: {result['error']}"
+        
+        if _tool_logger:
+            _tool_logger.success(f"smart_query completed", session=result.get('session_id', 'N/A'))
         
         output = f"=== Smart Query Result ===\n"
         output += f"Session: {result.get('session_id', 'N/A')}\n\n"
@@ -734,6 +782,8 @@ async def smart_query(query: str, project_path: Optional[str] = None) -> str:
         
         return output
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error("smart_query exception", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -846,12 +896,20 @@ async def extended_index(directory: str, recursive: bool = True) -> str:
         Extended indexing statistics
     """
     try:
+        if _tool_logger:
+            _tool_logger.tool("extended_index", directory=directory)
+        
         indexer = get_extended_knowledge()
         if not indexer:
             return "Error: Extended knowledge indexer not available"
         
         stats = indexer.index_directory_extended(directory, recursive)
         indexer.save_index()
+        
+        if _tool_logger:
+            _tool_logger.success(f"Extended indexed: {stats.get('files', 0)} files", 
+                               endpoints=stats.get('endpoints', 0), 
+                               models=stats.get('models', 0))
         
         output = "=== Extended Knowledge Indexing Complete ===\n\n"
         output += f"📁 Files Processed: {stats.get('files', 0)}\n"
@@ -868,6 +926,8 @@ async def extended_index(directory: str, recursive: bool = True) -> str:
         
         return output
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error("extended_index failed", error=str(e))
         return f"Error: {str(e)}"
 
 
@@ -970,11 +1030,20 @@ async def check_quality(code: str) -> str:
     IMPORTANT: Always use this before writing new code to ensure quality!
     """
     try:
+        if _tool_logger:
+            _tool_logger.quality(f"Analyzing code ({len(code)} chars)")
+        
         guardian = get_quality_guardian_instance()
         if not guardian:
             return "Error: Quality Guardian not available"
         
         warnings = guardian.check_code_quality(code)
+        
+        if _tool_logger:
+            if warnings:
+                _tool_logger.warning(f"Quality issues found", count=len(warnings))
+            else:
+                _tool_logger.success("Quality check passed")
         
         output = "=== 🛡️ Quality Guardian Analysis ===\n\n"
         
@@ -992,6 +1061,8 @@ async def check_quality(code: str) -> str:
         
         return output
     except Exception as e:
+        if _tool_logger:
+            _tool_logger.error("check_quality failed", error=str(e))
         return f"Error: {str(e)}"
 
 
