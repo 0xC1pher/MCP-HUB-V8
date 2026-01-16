@@ -1025,24 +1025,47 @@ async def get_quality_principles() -> str:
 # Entry Point
 # ============================================
 
+# ============================================
+# Entry Point
+# ============================================
+
 if __name__ == "__main__":
     import uvicorn
-    
-    print("=" * 60, file=sys.stderr)
-    print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
-    print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
-    print("=" * 60, file=sys.stderr)
-    print("\nTools disponibles (24):", file=sys.stderr)
-    print("  V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
-    print("  V7 Sessions: create_session, get_session_summary, list_sessions, delete_session", file=sys.stderr)
-    print("  V7 Code: index_code, search_entity", file=sys.stderr)
-    print("  Advanced: process_advanced, expand_query, chunk_document, get_system_status, add_feedback, optimize_configuration", file=sys.stderr)
-    print("  Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
-    print("  🆕 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
-    print("  🆕 Quality: check_quality, get_quality_principles", file=sys.stderr)
-    print("=" * 60, file=sys.stderr)
-    
-    app = mcp.sse_app()
-    uvicorn.run(app, host="127.0.0.1", port=8765)
+    try:
+        from pretty_logger import get_logger, configure_standard_logging
+        
+        # Configurar logging bonito (intercepta logs de uvicorn y root)
+        configure_standard_logging()
+        logger = get_logger("MCP-V8")
+        
+        # Header bonito
+        logger.header("Yari Medic - MCP Hub v8.0", "Extended Knowledge + Quality Guardian")
+        
+        logger.info("Iniciando servidor...", endpoint="http://127.0.0.1:8765/sse")
+        
+        print("\nTools disponibles (24):", file=sys.stderr)
+        print("  🔷 V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
+        print("  📁 V7 Sessions: create_session, get_session_summary, list_sessions, delete_session", file=sys.stderr)
+        print("  💻 V7 Code: index_code, search_entity", file=sys.stderr)
+        print("  ⚡ Advanced: process_advanced, expand_query, chunk_document, get_system_status, add_feedback, optimize_configuration", file=sys.stderr)
+        print("  🧠 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
+        print("  📚 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
+        print("  🛡️ Quality: check_quality, get_quality_principles", file=sys.stderr)
+        logger.divider()
+        
+        app = mcp.sse_app()
+        
+        # log_config=None evita que Uvicorn formatee los logs (dejando que PrettyLogger lo haga)
+        uvicorn.run(app, host="127.0.0.1", port=8765, log_config=None)
+        
+    except ImportError:
+        # Fallback si falla pretty_logger
+        print("=" * 60, file=sys.stderr)
+        print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
+        print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
+        print("=" * 60, file=sys.stderr)
+        
+        app = mcp.sse_app()
+        uvicorn.run(app, host="127.0.0.1", port=8765)
 
 
