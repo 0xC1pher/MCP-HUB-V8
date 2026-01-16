@@ -6772,3 +6772,12 @@ Traceback (most recent call last):
   File "C:\Program Files\Python311\Lib\asyncio\locks.py", line 213, in wait
     await fut
 asyncio.exceptions.CancelledError
+[12:30:55.192] [INFO] Iniciando servidor... {'endpoint': 'http://127.0.0.1:8765/sse'}
+[12:30:55.892] [DEBUG] [mcp.server.sse] SseServerTransport initialized with endpoint: /messages/
+[12:30:55.960] [DEBUG] [asyncio] Using proactor: IocpProactor
+[12:30:56.235] [INFO] [uvicorn.error] Started server process [11412]
+[12:30:56.240] [INFO] [uvicorn.error] Waiting for application startup.
+[12:30:56.241] [INFO] [uvicorn.error] Application startup complete.
+[12:30:56.244] [ERROR] [uvicorn.error] [Errno 10048] error while attempting to bind on address ('127.0.0.1', 8765): solo se permite un uso de cada dirección de socket (protocolo/dirección de red/puerto)
+[12:30:56.250] [INFO] [uvicorn.error] Waiting for application shutdown.
+[12:30:56.257] [INFO] [uvicorn.error] Application shutdown complete.

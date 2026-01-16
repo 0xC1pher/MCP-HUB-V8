@@ -1093,8 +1093,74 @@ async def get_quality_principles() -> str:
 
 
 # ============================================
-# Entry Point
+# Graceful Shutdown Handler
 # ============================================
+
+def graceful_shutdown(logger=None):
+    """
+    Save all data before shutdown.
+    Called when Ctrl+C is pressed.
+    """
+    if logger:
+        logger.divider("Shutdown")
+        logger.info("Guardando datos antes de cerrar...")
+    else:
+        print("\n⏳ Guardando datos antes de cerrar...", file=sys.stderr)
+    
+    saved_items = []
+    
+    try:
+        # 1. Guardar sesiones del servidor v6
+        server = get_v6_server()
+        if server and hasattr(server, 'session_manager'):
+            if hasattr(server.session_manager, 'save_all_sessions'):
+                server.session_manager.save_all_sessions()
+                saved_items.append("Sessions")
+        
+        # 2. Guardar índice de código
+        if server and hasattr(server, 'indexer'):
+            if hasattr(server.indexer, 'save_index'):
+                server.indexer.save_index()
+                saved_items.append("Code Index")
+        
+        # 3. Guardar índice de vectores
+        if server and hasattr(server, 'index'):
+            if hasattr(server.index, 'save'):
+                server.index.save()
+                saved_items.append("Vectors")
+        
+        # 4. Guardar Smart Session Orchestrator state
+        orchestrator = get_smart_orchestrator()
+        if orchestrator:
+            if hasattr(orchestrator, '_save_state'):
+                orchestrator._save_state()
+                saved_items.append("Smart Sessions")
+        
+        # 5. Guardar Extended Knowledge index
+        extended = get_extended_knowledge()
+        if extended:
+            extended.save_index()
+            saved_items.append("Extended Knowledge")
+        
+        # 6. Cerrar archivo de logs
+        if _tool_logger and hasattr(_tool_logger, 'close'):
+            _tool_logger.close()
+            saved_items.append("Logs")
+        
+        if logger:
+            logger.success(f"Datos guardados: {', '.join(saved_items)}")
+            logger.divider()
+            logger.info("👋 ¡Hasta pronto! MCP Hub v8 cerrado correctamente.")
+        else:
+            print(f"✅ Guardado: {', '.join(saved_items)}", file=sys.stderr)
+            print("👋 ¡Hasta pronto!", file=sys.stderr)
+            
+    except Exception as e:
+        if logger:
+            logger.error(f"Error durante shutdown: {e}")
+        else:
+            print(f"❌ Error: {e}", file=sys.stderr)
+
 
 # ============================================
 # Entry Point
@@ -1102,17 +1168,29 @@ async def get_quality_principles() -> str:
 
 if __name__ == "__main__":
     import uvicorn
+    import signal
+    
+    main_logger = None
+    
     try:
         from pretty_logger import get_logger, configure_standard_logging
         
         # Configurar logging bonito (intercepta logs de uvicorn y root)
         configure_standard_logging()
-        logger = get_logger("MCP-V8")
+        main_logger = get_logger("MCP-V8")
+        
+        # Registrar handler de shutdown
+        def signal_handler(sig, frame):
+            graceful_shutdown(main_logger)
+            sys.exit(0)
+        
+        signal.signal(signal.SIGINT, signal_handler)
+        signal.signal(signal.SIGTERM, signal_handler)
         
         # Header bonito
-        logger.header("Yari Medic - MCP Hub v8.0", "Extended Knowledge + Quality Guardian")
+        main_logger.header("Yari Medic - MCP Hub v8.0", "Extended Knowledge + Quality Guardian")
         
-        logger.info("Iniciando servidor...", endpoint="http://127.0.0.1:8765/sse")
+        main_logger.info("Iniciando servidor...", endpoint="http://127.0.0.1:8765/sse")
         
         print("\nTools disponibles (24):", file=sys.stderr)
         print("  🔷 V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
@@ -1122,7 +1200,8 @@ if __name__ == "__main__":
         print("  🧠 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
         print("  📚 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
         print("  🛡️ Quality: check_quality, get_quality_principles", file=sys.stderr)
-        logger.divider()
+        print("\n💾 Presiona Ctrl+C para guardar y cerrar correctamente", file=sys.stderr)
+        main_logger.divider()
         
         app = mcp.sse_app()
         
@@ -1131,12 +1210,20 @@ if __name__ == "__main__":
         
     except ImportError:
         # Fallback si falla pretty_logger
+        def signal_handler(sig, frame):
+            graceful_shutdown(None)
+            sys.exit(0)
+        
+        signal.signal(signal.SIGINT, signal_handler)
+        
         print("=" * 60, file=sys.stderr)
         print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
         print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
+        print("💾 Presiona Ctrl+C para guardar y cerrar", file=sys.stderr)
         print("=" * 60, file=sys.stderr)
         
         app = mcp.sse_app()
         uvicorn.run(app, host="127.0.0.1", port=8765)
+
 
 
