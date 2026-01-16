@@ -14,8 +14,9 @@ _test_import.py
 .git
 
 # Logs
-#*.log
-#logs/
+*.log
+logs/
+core/logs/
 
 #person
 #feature.md
