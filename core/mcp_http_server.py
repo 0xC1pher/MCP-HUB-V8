@@ -790,6 +790,238 @@ async def get_smart_status() -> str:
 
 
 # ============================================
+# Extended Knowledge System
+# ============================================
+_extended_knowledge = None
+_quality_guardian = None
+
+def get_extended_knowledge():
+    """Get or create singleton instance of Extended Knowledge Indexer"""
+    global _extended_knowledge
+    if _extended_knowledge is None:
+        try:
+            from extended_knowledge import ExtendedKnowledgeIndexer
+            _extended_knowledge = ExtendedKnowledgeIndexer()
+            _extended_knowledge.load_index()  # Cargar índice existente
+        except Exception as e:
+            print(f"Warning: Could not create extended knowledge: {e}", file=sys.stderr)
+            _extended_knowledge = None
+    return _extended_knowledge
+
+def get_quality_guardian_instance():
+    """Get or create singleton instance of Quality Guardian"""
+    global _quality_guardian
+    if _quality_guardian is None:
+        try:
+            from extended_knowledge import QualityGuardian
+            _quality_guardian = QualityGuardian()
+        except Exception as e:
+            print(f"Warning: Could not create quality guardian: {e}", file=sys.stderr)
+            _quality_guardian = None
+    return _quality_guardian
+
+
+# ============================================
+# Extended Knowledge Tools
+# ============================================
+
+@mcp.tool()
+async def extended_index(directory: str, recursive: bool = True) -> str:
+    """
+    Index code with EXTENDED knowledge - goes beyond functions/classes.
+    
+    This tool indexes:
+    - 📌 Constants and configurations
+    - 🌐 API endpoints (Django, Flask, FastAPI)
+    - 📦 Data models (Django, Pydantic, dataclass, SQLAlchemy)
+    - 🎨 Design patterns (Singleton, Factory, Observer, etc.)
+    - 📝 TODOs, FIXMEs, and HACKs
+    - 🔗 Module dependencies
+    
+    Args:
+        directory: Path to directory to index
+        recursive: Index subdirectories (default: True)
+    
+    Returns:
+        Extended indexing statistics
+    """
+    try:
+        indexer = get_extended_knowledge()
+        if not indexer:
+            return "Error: Extended knowledge indexer not available"
+        
+        stats = indexer.index_directory_extended(directory, recursive)
+        indexer.save_index()
+        
+        output = "=== Extended Knowledge Indexing Complete ===\n\n"
+        output += f"📁 Files Processed: {stats.get('files', 0)}\n"
+        output += f"📌 Constants/Configs: {stats.get('constants', 0)}\n"
+        output += f"🌐 API Endpoints: {stats.get('endpoints', 0)}\n"
+        output += f"📦 Data Models: {stats.get('models', 0)}\n"
+        output += f"🎨 Design Patterns: {stats.get('patterns', 0)}\n"
+        output += f"📝 TODOs/FIXMEs: {stats.get('todos', 0)}\n"
+        
+        # Incluir recordatorio de calidad
+        guardian = get_quality_guardian_instance()
+        if guardian:
+            output += guardian.get_reminder()
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def extended_search(query: str) -> str:
+    """
+    Search through extended knowledge (constants, APIs, models, patterns).
+    
+    Goes beyond function/class search to find:
+    - Configuration values
+    - API endpoints matching your query
+    - Data models
+    - And more...
+    
+    Args:
+        query: Search query (name, path, or keyword)
+    
+    Returns:
+        Matching items from extended knowledge
+    """
+    try:
+        indexer = get_extended_knowledge()
+        if not indexer:
+            return "Error: Extended knowledge indexer not available"
+        
+        results = indexer.search_extended(query)
+        
+        if not results:
+            return f"No results found for '{query}' in extended knowledge."
+        
+        output = f"=== Extended Search Results for '{query}' ===\n\n"
+        
+        for result in results[:15]:  # Limit to 15 results
+            rtype = result.get("type", "unknown")
+            if rtype == "constant":
+                output += f"📌 CONSTANT: {result['name']}\n"
+                output += f"   Module: {result['module']}\n"
+                output += f"   Value: {result['value'][:50]}...\n\n"
+            elif rtype == "endpoint":
+                output += f"🌐 ENDPOINT: {result['method']} {result['path']}\n"
+                output += f"   Framework: {result['framework']}\n"
+                output += f"   Module: {result['module']}\n\n"
+            elif rtype == "model":
+                output += f"📦 MODEL: {result['name']}\n"
+                output += f"   Type: {result['model_type']}\n"
+                output += f"   Fields: {result['fields']}\n\n"
+        
+        if len(results) > 15:
+            output += f"... and {len(results) - 15} more results\n"
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def get_knowledge_summary() -> str:
+    """
+    Get comprehensive summary of all extended knowledge.
+    
+    Includes:
+    - Statistics of indexed items
+    - Key API endpoints
+    - Data models overview
+    - Detected design patterns
+    - High priority TODOs/FIXMEs
+    - Quality Guardian principles (ALWAYS included)
+    
+    Returns:
+        Complete knowledge summary with quality reminders
+    """
+    try:
+        indexer = get_extended_knowledge()
+        if not indexer:
+            return "Error: Extended knowledge indexer not available"
+        
+        return indexer.get_knowledge_summary()
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def check_quality(code: str) -> str:
+    """
+    Check code quality against Quality Guardian principles.
+    
+    Analyzes code for:
+    - 🚫 Redundancy (repeated code patterns)
+    - 🔄 Duplication (copy-pasted code)
+    - 📈 Scalability issues (functions too long)
+    - 🎯 Single responsibility violations
+    - 🏜️ DRY principle violations
+    
+    Args:
+        code: Code snippet to analyze
+    
+    Returns:
+        Quality warnings and suggestions with principle reminders
+    
+    IMPORTANT: Always use this before writing new code to ensure quality!
+    """
+    try:
+        guardian = get_quality_guardian_instance()
+        if not guardian:
+            return "Error: Quality Guardian not available"
+        
+        warnings = guardian.check_code_quality(code)
+        
+        output = "=== 🛡️ Quality Guardian Analysis ===\n\n"
+        
+        if warnings:
+            output += f"⚠️ Found {len(warnings)} potential issues:\n\n"
+            for w in warnings:
+                severity_icon = "🔴" if w['severity'] == "warning" else "🟡"
+                output += f"{severity_icon} [{w['principle'].upper()}] Line {w.get('line', '?')}\n"
+                output += f"   {w['message']}\n\n"
+        else:
+            output += "✅ No quality issues detected in this code!\n\n"
+        
+        # SIEMPRE incluir los principios
+        output += guardian.get_reminder()
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def get_quality_principles() -> str:
+    """
+    Get full Quality Guardian principles documentation.
+    
+    Returns the complete guide to code quality principles that are
+    ALWAYS enforced by the MCP system:
+    
+    - 🚫 No Redundancy
+    - 🔄 No Duplication  
+    - 📈 Scalability
+    - 🎯 Single Responsibility
+    - 🏜️ DRY (Don't Repeat Yourself)
+    
+    Use this as a reference before writing any code!
+    """
+    try:
+        guardian = get_quality_guardian_instance()
+        if not guardian:
+            return "Error: Quality Guardian not available"
+        
+        return guardian.get_principles_summary()
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+# ============================================
 # Entry Point
 # ============================================
 
@@ -797,17 +1029,20 @@ if __name__ == "__main__":
     import uvicorn
     
     print("=" * 60, file=sys.stderr)
-    print("MCP Server v8 - Smart Session Management", file=sys.stderr)
+    print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
     print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
-    print("\nTools disponibles (19):", file=sys.stderr)
+    print("\nTools disponibles (24):", file=sys.stderr)
     print("  V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
     print("  V7 Sessions: create_session, get_session_summary, list_sessions, delete_session", file=sys.stderr)
     print("  V7 Code: index_code, search_entity", file=sys.stderr)
     print("  Advanced: process_advanced, expand_query, chunk_document, get_system_status, add_feedback, optimize_configuration", file=sys.stderr)
-    print("  🆕 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
+    print("  Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
+    print("  🆕 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
+    print("  🆕 Quality: check_quality, get_quality_principles", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
     
     app = mcp.sse_app()
     uvicorn.run(app, host="127.0.0.1", port=8765)
+
 
