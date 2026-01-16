@@ -616,6 +616,180 @@ async def optimize_configuration() -> str:
 
 
 # ============================================
+# Smart Session Orchestrator
+# ============================================
+_smart_orchestrator = None
+
+def get_smart_orchestrator():
+    """Get or create singleton instance of Smart Session Orchestrator"""
+    global _smart_orchestrator
+    if _smart_orchestrator is None:
+        try:
+            from smart_session_orchestrator import SmartSessionOrchestrator
+            _smart_orchestrator = SmartSessionOrchestrator(mcp_server=get_v6_server())
+        except Exception as e:
+            print(f"Warning: Could not create smart orchestrator: {e}", file=sys.stderr)
+            _smart_orchestrator = None
+    return _smart_orchestrator
+
+
+# ============================================
+# Smart Session Tools (Auto-Management)
+# ============================================
+
+@mcp.tool()
+async def smart_session_init(project_path: Optional[str] = None, context: str = "", force_new: bool = False) -> str:
+    """
+    Intelligent session initialization - automatically detects project and session type.
+    
+    This smart tool:
+    - Detects the project from the path (or uses current directory)
+    - Reuses existing sessions for the same project (if recent)
+    - Auto-detects session type from context (feature, bugfix, refactor, review)
+    - Auto-indexes code if needed
+    - Maintains full persistence
+    
+    Args:
+        project_path: Path to project directory (optional, uses CWD if not provided)
+        context: Context text to detect session type (e.g., "fixing login bug", "adding new feature")
+        force_new: Force creation of a new session even if one exists
+    
+    Returns:
+        Session information including ID, type, and status
+    
+    Example usage:
+        smart_session_init("/path/to/my-app", "implementing user authentication")
+        -> Creates or reuses a "feature" type session for my-app
+    """
+    try:
+        orchestrator = get_smart_orchestrator()
+        if not orchestrator:
+            return "Error: Smart orchestrator not available"
+        
+        result = await orchestrator.smart_initialize(
+            project_path=project_path,
+            context=context,
+            force_new_session=force_new
+        )
+        
+        output = "=== Smart Session Initialization ===\n\n"
+        
+        if result.get("session_id"):
+            status = "🆕 CREATED" if result.get("is_new") else "♻️ REUSED"
+            output += f"📌 Session: {result['session_id']}\n"
+            output += f"   Status: {status}\n"
+            output += f"   Type: {result.get('session_type', 'general')}\n"
+            output += f"   Project: {result.get('project_path', 'N/A')}\n"
+            
+            if result.get("was_indexed"):
+                output += f"   📁 Code: Auto-indexed\n"
+            
+            output += f"\n✅ {result.get('message', 'Ready')}\n"
+        else:
+            output += f"❌ {result.get('message', 'Error initializing session')}\n"
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def smart_query(query: str, project_path: Optional[str] = None) -> str:
+    """
+    Execute a query with automatic session management.
+    
+    This tool automatically:
+    - Creates or reuses a session based on the project
+    - Executes the query with session context
+    - Maintains history for future queries
+    
+    Args:
+        query: The search query to execute
+        project_path: Optional project path (uses current session if not provided)
+    
+    Returns:
+        Query results with session context
+    """
+    try:
+        orchestrator = get_smart_orchestrator()
+        if not orchestrator:
+            return "Error: Smart orchestrator not available"
+        
+        result = await orchestrator.smart_query(query, project_path, auto_session=True)
+        
+        if "error" in result:
+            return f"Error: {result['error']}"
+        
+        output = f"=== Smart Query Result ===\n"
+        output += f"Session: {result.get('session_id', 'N/A')}\n\n"
+        
+        # Extract actual result
+        if "result" in result:
+            res = result["result"]
+            if isinstance(res, dict) and "content" in res:
+                for content in res.get("content", []):
+                    output += content.get("text", "") + "\n"
+            else:
+                output += str(res)
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+@mcp.tool()
+async def get_smart_status() -> str:
+    """
+    Get comprehensive status of the smart session orchestrator.
+    
+    Returns:
+        Statistics and current state of smart session management including:
+        - Active projects and their sessions
+        - Session statistics (created, reused, indexed)
+        - Current active session
+    """
+    try:
+        orchestrator = get_smart_orchestrator()
+        if not orchestrator:
+            return "Error: Smart orchestrator not available"
+        
+        stats = orchestrator.get_statistics()
+        all_sessions = orchestrator.get_all_project_sessions()
+        
+        output = "=== Smart Session Orchestrator Status ===\n\n"
+        
+        # Current session
+        current = stats.get("current_session")
+        output += f"📌 Current Session: {current or 'None'}\n\n"
+        
+        # Statistics
+        output += "📊 Statistics:\n"
+        stat_data = stats.get("statistics", {})
+        output += f"   Sessions Created: {stat_data.get('sessions_created', 0)}\n"
+        output += f"   Sessions Reused: {stat_data.get('sessions_reused', 0)}\n"
+        output += f"   Auto-Indexes: {stat_data.get('auto_indexes', 0)}\n\n"
+        
+        # Active projects
+        output += f"📁 Active Projects: {stats.get('active_projects', 0)}\n"
+        output += f"📂 Indexed Projects: {stats.get('indexed_projects', 0)}\n\n"
+        
+        # Project details
+        if all_sessions:
+            output += "🗂️ Project Sessions:\n"
+            for proj in all_sessions[:5]:  # Show first 5
+                output += f"   • {proj.get('project_path', 'N/A')}\n"
+                output += f"     Session: {proj.get('session_id', 'N/A')}\n"
+                output += f"     Type: {proj.get('session_type', 'N/A')}\n"
+            
+            if len(all_sessions) > 5:
+                output += f"   ... and {len(all_sessions) - 5} more\n"
+        
+        return output
+    except Exception as e:
+        return f"Error: {str(e)}"
+
+
+# ============================================
 # Entry Point
 # ============================================
 
@@ -623,14 +797,15 @@ if __name__ == "__main__":
     import uvicorn
     
     print("=" * 60, file=sys.stderr)
-    print("MCP Server v7 COMPLETO - HTTP/SSE Transport", file=sys.stderr)
+    print("MCP Server v8 - Smart Session Management", file=sys.stderr)
     print("Endpoint: http://127.0.0.1:8765/sse", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
-    print("\nTools disponibles (16):", file=sys.stderr)
+    print("\nTools disponibles (19):", file=sys.stderr)
     print("  V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
     print("  V7 Sessions: create_session, get_session_summary, list_sessions, delete_session", file=sys.stderr)
     print("  V7 Code: index_code, search_entity", file=sys.stderr)
     print("  Advanced: process_advanced, expand_query, chunk_document, get_system_status, add_feedback, optimize_configuration", file=sys.stderr)
+    print("  🆕 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
     
     app = mcp.sse_app()

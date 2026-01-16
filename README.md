@@ -1,4 +1,4 @@
-# 📖 Manual de Usuario - MCP Hub v7
+# 📖 Manual de Usuario - MCP Hub v8
 
 ## Guía Completa para Desarrolladores
 
@@ -6,9 +6,16 @@
 
 ## 1. Introducción
 
-### ¿Qué es MCP Hub v7?
+### ¿Qué es MCP Hub v8?
 
-MCP Hub v7 es un servidor de **Protocolo de Contexto de Modelo (MCP)** que actúa como tu memoria persistente durante el desarrollo de software. Mantiene el contexto de tus proyectos, indexa tu código, y mejora con el tiempo basándose en tu feedback.
+MCP Hub v8 es un servidor de **Protocolo de Contexto de Modelo (MCP)** con **Smart Session Management**. Actúa como tu memoria persistente durante el desarrollo de software, ahora con gestión INTELIGENTE y AUTOMÁTICA de sesiones.
+
+### 🆕 Novedades en V8
+
+- **Smart Session Init**: Detecta automáticamente el proyecto y tipo de sesión
+- **Auto-Reutilización**: Reutiliza sesiones existentes para el mismo proyecto
+- **Indexación Automática**: Auto-indexa código cuando es necesario
+- **Persistencia Inteligente**: Mantiene el contexto entre sesiones sin intervención manual
 
 ### ¿Para qué sirve?
 
@@ -16,6 +23,7 @@ MCP Hub v7 es un servidor de **Protocolo de Contexto de Modelo (MCP)** que actú
 2. **Conocimiento del código**: El sistema conoce tus funciones y clases
 3. **Búsqueda inteligente**: Encuentra información con queries naturales
 4. **Anti-alucinación**: Valida respuestas contra evidencia real
+5. **🆕 Gestión automática**: No necesitas crear sesiones manualmente
 
 ---
 
@@ -26,7 +34,8 @@ MCP Hub v7 es un servidor de **Protocolo de Contexto de Modelo (MCP)** que actú
 - ✅ Python 3.9 o superior
 - ✅ Windows 10/11
 - ✅ Antigravity IDE instalado
-- ✅ MCP Hub v7 instalado
+- ✅ MCP Hub v8 instalado
+
 
 ### 2.2 Instalación Rápida
 
@@ -89,7 +98,7 @@ En Antigravity, escribe en el chat:
 usa la tool ping para verificar el MCP
 ```
 
-Respuesta esperada: `pong - MCP v7 HTTP server is working!`
+Respuesta esperada: `pong - MCP v8 HTTP server is working!`
 
 ### 3.2 Ver Estado del Sistema
 
@@ -98,11 +107,25 @@ usa get_system_status
 ```
 
 Esto muestra:
-- Estado del servidor v7
+- Estado del servidor v8
 - Features avanzadas habilitadas
 - Estadísticas de operaciones
 
-### 3.3 Crear tu Primera Sesión
+### 3.3 🆕 Inicialización Inteligente de Sesión (Recomendado)
+
+```
+smart_session_init con project_path="C:\ruta\a\mi\proyecto" context="implementando autenticación de usuarios"
+```
+
+El sistema automáticamente:
+- ✅ Detecta el tipo de sesión (feature, bugfix, review, refactor)
+- ✅ Reutiliza sesión existente si hay una reciente para el proyecto
+- ✅ Auto-indexa el código si es necesario
+- ✅ Guarda todo con persistencia
+
+### 3.4 Crear Sesión Manual (Alternativa)
+
+Si prefieres control manual:
 
 ```
 crea una sesión llamada "mi-proyecto" de tipo "feature"
