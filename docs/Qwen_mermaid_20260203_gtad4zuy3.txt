@@ -1,0 +1,27 @@
+flowchart TD
+    A[Consulta Desarrollador] --> B[Orquestador v9]
+    
+    B --> C[Project Grounding]
+    B --> D[Memory Tool]
+    B --> E[Skills Manager]
+    
+    C --> C1[vision.md / context.md]
+    C1 --> F[Validación Factual]
+    
+    D --> D1[User Preferences / History]
+    E --> E1[Re-usable Knowledge]
+    
+    F --> G[QA Audit Report]
+    D1 --> G
+    E1 --> G
+    
+    G --> H[Respuesta Anti-Alucinación]
+    H --> I[Persistencia en Memoria]
+    
+    %% Estilos opcionales para mejor legibilidad
+    classDef orchestrator fill:#4a86e8,stroke:#000,color:white
+    classDef data fill:#f6b26b,stroke:#000
+    classDef output fill:#6aa84f,stroke:#000,color:white
+    class B orchestrator
+    class C1,D1,E1 data
+    class G,H,I output
