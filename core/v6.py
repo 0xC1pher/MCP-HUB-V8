@@ -65,7 +65,6 @@ except ImportError as e:
     logger.error(traceback.format_exc())
     V6_COMPONENTS_AVAILABLE = False
     # Create dummy classes to avoid errors
-    class SessionManager: pass
     class SessionStorage: pass
     class CodeIndexer: pass
     class EntityTracker: pass
@@ -74,6 +73,12 @@ except ImportError as e:
     class SkillsManager: pass
     class MemoryHandler: pass
 
+# Helper to safely call jepa_flow if it exists, otherwise fallback to info
+def safe_jepa_flow(step: str, message: str):
+    if hasattr(logger, 'jepa_flow'):
+        logger.jepa_flow(step, message)
+    else:
+        logger.info(f"[JEPA] {step}: {message}")
 
 class MCPServerV6:
     """
@@ -405,12 +410,16 @@ class MCPServerV6:
             token_manager=self.token_manager
         )
     
-        # v9: JEPA Factual Auditor
+        # v9: JEPA Factual Auditor - Ensure absolute path
+        audit_config = self._get_config_value('factual_audit', {})
+        if 'context_directory' not in audit_config:
+            audit_config['context_directory'] = str(mcp_hub_root / "data" / "project_context")
+
         self.factual_auditor = FactualAuditJEPA(
-            self._get_config_value('factual_audit', {}),
+            audit_config,
             vector_engine=self.vector_engine
         )
-        logger.jepa_flow("WORLD-MODEL", f"JEPA Contextual Shield {Colors.GREEN_NEON}ACTIVE{Colors.RESET}")
+        safe_jepa_flow("WORLD-MODEL", f"JEPA Contextual Shield {Colors.GREEN_NEON}ACTIVE{Colors.RESET}")
         logger.info("JEPA World Model loaded for anti-hallucination")
 
         # v9 Advanced: Query expansion, chunking and calibration
@@ -754,7 +763,7 @@ class MCPServerV6:
         print(f"{Colors.GREEN_NEON} [TOOL] {Colors.RESET} Executing: {tool_color}{tool}{Colors.RESET}", file=sys.stderr)
         
         # Log de inicio de procesamiento
-        logger.jepa_flow("TOOL-START", f"Executing {tool_color}{tool}{Colors.RESET}")
+        safe_jepa_flow("TOOL-START", f"Executing {tool_color}{tool}{Colors.RESET}")
         
         if args:
             args_str = json.dumps(args, default=str)
