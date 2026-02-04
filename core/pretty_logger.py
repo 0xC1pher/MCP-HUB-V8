@@ -323,12 +323,23 @@ class PrettyLogger:
             print(f"  {Colors.DIM}{Colors.GREEN_MINT}🚀 {subtitle}{Colors.RESET}", file=sys.stderr)
         
         self.divider(f" v9 Contextual Intelligence Core ", char="━", width=80)
-        print(f"  {Colors.DIM}System Status: {Colors.GREEN_PALE}ONLINE{Colors.RESET} | {Colors.DIM}Anti-Hallucination: {Colors.GREEN_PALE}ACTIVE{Colors.RESET}", file=sys.stderr)
+        print(f"  {Colors.DIM}System Status: {Colors.GREEN_PALE}ONLINE{Colors.RESET} | {Colors.DIM}Anti-Hallucination: {Colors.CYAN}JEPA WORLD MODEL{Colors.RESET}", file=sys.stderr)
+        print(f"  {Colors.DIM}Vortex Mode: {Colors.GREEN_PALE}ACTIVE{Colors.RESET} | {Colors.DIM}Shield Status: {Colors.GREEN_MINT}SYNCHRONIZED{Colors.RESET}", file=sys.stderr)
         self.divider("", char="─", width=80)
 
     def v9_flow(self, step: str, details: str = ""):
         """Log específico para ver el flujo de datos interactivo"""
         self._log(LogLevel.V9_FLOW, f"{Colors.BOLD}{step}{Colors.RESET} -> {details}")
+
+    def jepa_flow(self, step: str, message: str):
+        """Matrix-style JEPA World Model flow"""
+        timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
+        prefix = f"{Colors.GREEN_NEON}〈 JEPA-WORLD 〉{Colors.RESET}"
+        
+        # Binary noise for the 'World Model' effect
+        noise = "".join(random.choice("01") for _ in range(8))
+        
+        print(f"{Colors.DIM}{timestamp}{Colors.RESET} {prefix} {Colors.GREEN_MID}{step}{Colors.RESET}: {message} {Colors.DIM}〈 {noise} 〉{Colors.RESET}", file=sys.stderr)
 
     def matrix_flow(self, tool_name: str, action: str, color: str = Colors.GREEN_NEON):
         """Matrix-like visual flow for tools with binary/ASCII patterns"""

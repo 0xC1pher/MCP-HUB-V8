@@ -57,6 +57,7 @@ try:
     from memory.skills_manager import SkillsManager
     from storage.memory_handler import MemoryHandler
     from advanced_features.project_grounding import ProjectGrounding
+    from advanced_features.factual_audit_jepa import FactualAuditJEPA
     V6_COMPONENTS_AVAILABLE = True
 except ImportError as e:
     import traceback
@@ -323,7 +324,7 @@ class MCPServerV6:
     
     def _initialize_v6_components(self):
         """Initialize v6-specific components (sessions, indexing, etc.)"""
-        logger.header("AGI-CONTEXT-VORTEX - Core v9", "Contextual Intelligence Interface")
+        logger.header("AGI-CONTEXT-VORTEX - Core v9", "Contextual Intelligence (JEPA World Model Activated)")
         if not V6_COMPONENTS_AVAILABLE:
             return
             
@@ -403,6 +404,14 @@ class MCPServerV6:
             vector_engine=self.vector_engine,
             token_manager=self.token_manager
         )
+    
+        # v9: JEPA Factual Auditor
+        self.factual_auditor = FactualAuditJEPA(
+            self._get_config_value('factual_audit', {}),
+            vector_engine=self.vector_engine
+        )
+        logger.jepa_flow("WORLD-MODEL", f"JEPA Contextual Shield {Colors.GREEN_NEON}ACTIVE{Colors.RESET}")
+        logger.info("JEPA World Model loaded for anti-hallucination")
 
         # v9 Advanced: Query expansion, chunking and calibration
         if ADVANCED_AVAILABLE:
@@ -726,7 +735,8 @@ class MCPServerV6:
             'validate_response': Colors.GREEN_MINT, 'index_status': Colors.GREEN_MINT,
             # V9 Intelligence (Neon)
             'memory_tool': Colors.GREEN_NEON, 'skills_tool': Colors.GREEN_NEON, 
-            'ground_project_context': Colors.GREEN_NEON,
+            'ground_project_context': Colors.GREEN_NEON, 'audit_jepa': Colors.GREEN_NEON,
+            'sync_world_model': Colors.GREEN_NEON,
             # V7 Sessions (Pale)
             'create_session': Colors.GREEN_PALE, 'get_session_summary': Colors.GREEN_PALE,
             'list_sessions': Colors.GREEN_PALE, 'delete_session': Colors.GREEN_PALE,
@@ -741,6 +751,10 @@ class MCPServerV6:
         
         # Log visual Matrix
         logger.matrix_flow(tool, "TOOL-INVOICE", color=tool_color)
+        print(f"{Colors.GREEN_NEON} [TOOL] {Colors.RESET} Executing: {tool_color}{tool}{Colors.RESET}", file=sys.stderr)
+        
+        # Log de inicio de procesamiento
+        logger.jepa_flow("TOOL-START", f"Executing {tool_color}{tool}{Colors.RESET}")
         
         if args:
             args_str = json.dumps(args, default=str)
@@ -767,6 +781,8 @@ class MCPServerV6:
                 'smart_query': self._handle_smart_query,
                 'check_quality': self._handle_check_quality,
                 'get_quality_principles': self._handle_get_quality_principles,
+                'audit_jepa': self._handle_audit_jepa,
+                'sync_world_model': lambda args: {'content': [{'type': 'text', 'text': self.factual_auditor.update_world_model()}]},
                 'extended_search': self._handle_extended_search,
                 'extended_index': self._handle_extended_index,
                 'get_knowledge_summary': self._handle_get_knowledge_summary,
@@ -1560,6 +1576,39 @@ class MCPServerV6:
         # Redirigir a get_context con la sesión actual si existe
         result = self._get_context_direct(args)
         return result
+
+    def _handle_audit_jepa(self, args: Dict) -> Dict:
+        """Audit a proposal against Project World Model (JEPA)"""
+        query = args.get('query', 'general project alignment')
+        proposal = args.get('proposal', '')
+        
+        if not proposal:
+            return {
+                'content': [{'type': 'text', 'text': 'Error: No proposal provided for audit.'}],
+                '_meta': {'error': True}
+            }
+            
+        result = self.factual_auditor.audit_proposal(query, proposal)
+        
+        status_colors = {
+            "trusted": Colors.GREEN_NEON,
+            "suspicious": Colors.YELLOW,
+            "hallucination_detected": Colors.RED,
+            "uncertain": Colors.CYAN
+        }
+        status_color = status_colors.get(result["status"], Colors.RESET)
+        
+        # JEPA Matrix Flow
+        logger.jepa_flow("WORLD-MODEL-AUDIT", f"Consistency check for: {Colors.DIM}{query[:30]}...{Colors.RESET}")
+        logger.jepa_flow("PREDICTION-ERROR", f"Score: {status_color}{result['score']:.2f}{Colors.RESET} - Latent Alignment: {result.get('alignment', 0):.2f}")
+        
+        if result["status"] == "hallucination_detected":
+            logger.error("🚨 HALLUCINATION DETECTED: Proposal violates World Model constraints!")
+        
+        return {
+            'content': [{'type': 'text', 'text': json.dumps(result, indent=2)}],
+            '_meta': result
+        }
 
     def _handle_check_quality(self, args: Dict) -> Dict:
         """Check code quality against principles"""

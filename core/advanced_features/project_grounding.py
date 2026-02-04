@@ -92,8 +92,12 @@ class ProjectGrounding:
         Útil para asegurar que no se introducen lógicas externas no deseadas.
         """
         vision_docs = [d for d in self.context_cache if "vision" in d["source"].lower() or "roadmap" in d["source"].lower()]
-        if not vision_docs:
-            return {"status": "warning", "message": "No se encontró documento de Vision.md para validar."}
-            
-        # Aquí se implementará lógica de validación semántica cruzada (v9 JEPA)
-        return {"status": "ok", "message": "Lógica inicial validada (Grounding pasivo)"}
+        from core.advanced_features.factual_audit_jepa import FactualAuditJEPA
+        self.auditor = FactualAuditJEPA(vector_engine=self.vector_engine)
+        
+    def validate_against_vision(self, proposal: str, query: str = "general alignment") -> Dict:
+        """
+        Valida una propuesta o lógica contra la visión general del proyecto.
+        Usa los principios de JEPA para detectar desviaciones semánticas.
+        """
+        return self.auditor.audit_proposal(query, proposal)

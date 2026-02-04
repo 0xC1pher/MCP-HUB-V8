@@ -1104,6 +1104,41 @@ async def get_knowledge_summary() -> str:
 
 
 @mcp.tool()
+def sync_world_model() -> str:
+    """
+    Synchronize the JEPA World Model with current files in data/project_context/.
+    Use this after updating project requirements or vision documents.
+    """
+    global _v6_server
+    if _v6_server:
+        result = _v6_server.factual_auditor.update_world_model()
+        return str(result)
+    return "AGI-Context-Vortex Server not initialized."
+
+@mcp.tool()
+def test_colors_flow() -> str:
+    """
+    Test tool to verify visual matrix flow and colors in logs.
+    """
+    global _v6_server
+    if _v6_server:
+        logger.matrix_flow("COLOR-TEST", "INVOKED", color=Colors.GREEN_NEON)
+        logger.jepa_flow("JEPA-RAINBOW", f"{Colors.RED}R{Colors.YELLOW}A{Colors.GREEN}I{Colors.CYAN}N{Colors.BLUE}B{Colors.MAGENTA}O{Colors.RESET}W test")
+        return "Color test executed. Check terminal output."
+    return "Server not initialized."
+@mcp.tool()
+def audit_jepa(proposal: str, query: str = "general project alignment") -> str:
+    """
+    JEPA-inspired Factual Auditor. Validates a proposal against the Project World Model.
+    Use this to detect anti-hallucination and ensure alignment with Roadmap and Vision.
+    """
+    global _v6_server
+    if _v6_server:
+        result = _v6_server._handle_audit_jepa({"proposal": proposal, "query": query})
+        return str(result['content'][0]['text'])
+    return "AGI-Context-Vortex Server not initialized."
+
+@mcp.tool()
 async def check_quality(code: str) -> str:
     """
     Check code quality against Quality Guardian principles.
@@ -1312,6 +1347,11 @@ if __name__ == "__main__":
         main_logger.info("Iniciando servidor SSE...", endpoint=f"http://127.0.0.1:{port}/sse")
         
         from pretty_logger import Colors
+        print(f"{Colors.GREEN_MID}  Contextual Intelligence Engine {Colors.RESET}")
+        print(f"{Colors.DIM}  ----------------------------- v9 Contextual Intelligence Core ----------------------------{Colors.RESET}")
+        print(f"  System Status: {Colors.GREEN_NEON}ONLINE{Colors.RESET} | JEPA World Model: {Colors.GREEN_NEON}ACTIVE{Colors.RESET}")
+        print(f"  Model Pulse: {Colors.CYAN}SYNCHRONIZED{Colors.RESET} | Anti-Hallucination: {Colors.GREEN_NEON}ENABLED{Colors.RESET}")
+        print(f"{Colors.DIM}  ------------------------------------------------------------------------------------------{Colors.RESET}")
         print(f"\n{Colors.GREEN_NEON}📋 VORTEX ARSENAL Ready:{Colors.RESET}", file=sys.stderr)
         
         # Matrix flows for categories
