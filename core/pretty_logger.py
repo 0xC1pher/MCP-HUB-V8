@@ -15,6 +15,7 @@ Features:
 
 import sys
 import logging
+import random
 from datetime import datetime
 from typing import Optional, Dict, Any, Union
 from enum import Enum
@@ -62,12 +63,20 @@ class Colors:
     BRIGHT_CYAN = "\033[96m"
     BRIGHT_WHITE = "\033[97m"
     
+    # Tonos Verdes Especiales para Yari (Branding)
+    GREEN_PALE = "\033[38;5;120m"
+    GREEN_MID = "\033[38;5;114m"
+    GREEN_DARK = "\033[38;5;108m"
+    GREEN_NEON = "\033[38;5;82m"
+    GREEN_MINT = "\033[38;5;158m"
+    
     # Fondos
     BG_BLACK = "\033[40m"
     BG_RED = "\033[41m"
     BG_GREEN = "\033[42m"
     BG_YELLOW = "\033[43m"
     BG_BLUE = "\033[44m"
+    BG_YARI = "\033[48;5;22m" # Fondo verde oscuro
 
 
 class LogLevel(Enum):
@@ -79,12 +88,16 @@ class LogLevel(Enum):
     ERROR = ("❌", Colors.BRIGHT_RED, "ERROR")
     CRITICAL = ("🔥", Colors.RED + Colors.BOLD, "CRITICAL")
     
-    # Tipos especiales para MCP
+    # Tipos especiales para MCP v9
     TOOL = ("🔧", Colors.BRIGHT_CYAN, "TOOL")
     SESSION = ("📁", Colors.BRIGHT_MAGENTA, "SESSION")
     INDEX = ("📊", Colors.BRIGHT_GREEN, "INDEX")
     QUERY = ("🔎", Colors.BRIGHT_BLUE, "QUERY")
     QUALITY = ("🛡️ ", Colors.BRIGHT_YELLOW, "QUALITY")
+    GROUNDING = ("🌍", Colors.GREEN_MINT, "GROUND")
+    MEMORY = ("🧠", Colors.MAGENTA, "MEMORY")
+    SKILL = ("📜", Colors.GREEN_PALE, "SKILL")
+    V9_FLOW = ("🔄", Colors.GREEN_NEON, "V9-FLOW")
 
 
 # ============================================
@@ -285,12 +298,66 @@ class PrettyLogger:
         print(f"{Colors.DIM}{line}{Colors.RESET}", file=sys.stderr)
     
     def header(self, title: str, subtitle: str = ""):
-        """Imprimir encabezado bonito"""
-        self.divider()
-        print(f"{Colors.BOLD}{Colors.BRIGHT_CYAN}  {title}{Colors.RESET}", file=sys.stderr)
+        """Imprimir encabezado bonito con branding ASCII"""
+        self.divider("", char="━", width=80)
+        
+        # ASCII Art para Context Vortex
+        ascii_art = f"""
+{Colors.GREEN_NEON}  ██████╗ ██████╗ ███╗   ██╗████████╗███████╗██╗  ██╗████████╗
+{Colors.GREEN_PALE} ██╔════╝██╔═══██╗████╗  ██║╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝
+{Colors.GREEN_MID} ██║     ██║   ██║██╔██╗ ██║   ██║   █████╗   ╚███╔╝    ██║   
+{Colors.GREEN_DARK} ██║     ██║   ██║██║╚██╗██║   ██║   ██╔══╝   ██╔██╗    ██║   
+{Colors.GREEN_NEON} ╚██████╗╚██████╔╝██║ ╚████║   ██║   ███████╗██╔╝ ██╗   ██║   
+{Colors.BRIGHT_BLACK}  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝   
+{Colors.CYAN}       ██╗   ██╗ ██████╗ ██████╗ ████████╗███████╗██╗  ██╗
+{Colors.CYAN}       ██║   ██║██╔═══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗██╔╝
+{Colors.CYAN}       ██║   ██║██║   ██║██████╔╝   ██║   █████╗   ╚███╔╝ 
+{Colors.CYAN}       ╚██╗ ██╔╝██║   ██║██╔══██╗   ██║   ██╔══╝   ██╔██╗ 
+{Colors.CYAN}        ╚████╔╝ ╚██████╔╝██║  ██║   ██║   ███████╗██╔╝ ██╗
+{Colors.CYAN}         ╚═══╝   ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝
+        """
+        print(ascii_art, file=sys.stderr)
+        
+        print(f"  {Colors.BOLD}{Colors.GREEN_NEON}✨ {title}{Colors.RESET}", file=sys.stderr)
         if subtitle:
-            print(f"{Colors.DIM}  {subtitle}{Colors.RESET}", file=sys.stderr)
-        self.divider()
+            print(f"  {Colors.DIM}{Colors.GREEN_MINT}🚀 {subtitle}{Colors.RESET}", file=sys.stderr)
+        
+        self.divider(f" v9 Contextual Intelligence Core ", char="━", width=80)
+        print(f"  {Colors.DIM}System Status: {Colors.GREEN_PALE}ONLINE{Colors.RESET} | {Colors.DIM}Anti-Hallucination: {Colors.GREEN_PALE}ACTIVE{Colors.RESET}", file=sys.stderr)
+        self.divider("", char="─", width=80)
+
+    def v9_flow(self, step: str, details: str = ""):
+        """Log específico para ver el flujo de datos interactivo"""
+        self._log(LogLevel.V9_FLOW, f"{Colors.BOLD}{step}{Colors.RESET} -> {details}")
+
+    def matrix_flow(self, tool_name: str, action: str, color: str = Colors.GREEN_NEON):
+        """Matrix-like visual flow for tools with binary/ASCII patterns"""
+        timestamp = datetime.now().strftime("%H:%M:%S.%f")[:-3]
+        
+        # Generar "lluvia de datos" binarios (3 líneas para efecto visual)
+        binary_chars = "01 "
+        ascii_chars = ".:-=+*#%@"
+        
+        rain_lines = []
+        for _ in range(3):
+            p = "".join(random.choice(binary_chars) for _ in range(12))
+            s = "".join(random.choice(ascii_chars) for _ in range(12))
+            rain_lines.append((p, s))
+        
+        # Línea de acción principal centrada entre lluvia
+        print(f"{Colors.DIM}{timestamp}{Colors.RESET} {color}{rain_lines[0][0]}                     {rain_lines[0][1]}{Colors.RESET}", file=sys.stderr)
+        
+        matrix_msg = f"{Colors.DIM}{timestamp}{Colors.RESET} {color}{Colors.BOLD}【 {rain_lines[1][0]} 】{Colors.RESET} "
+        matrix_msg += f"{color}{action.upper()}{Colors.RESET}: {Colors.BOLD}{tool_name}{Colors.RESET} "
+        matrix_msg += f"{color}{Colors.BOLD}【 {rain_lines[1][1]} 】{Colors.RESET}"
+        print(matrix_msg, file=sys.stderr)
+        
+        print(f"{Colors.DIM}{timestamp}{Colors.RESET} {color}{rain_lines[2][0]}                     {rain_lines[2][1]}{Colors.RESET}", file=sys.stderr)
+        
+        # Escribir a archivo si existe
+        if self._file_handler:
+            self._file_handler.write(f"[{timestamp}] [MATRIX] {action}: {tool_name}\n")
+            self._file_handler.flush()
     
     def json(self, data: Union[Dict, list], title: str = "Data"):
         """Imprimir JSON formateado"""

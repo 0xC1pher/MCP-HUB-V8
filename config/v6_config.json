@@ -1,24 +1,44 @@
 {
-    "version": "6.0.0",
+    "version": "9.0.0",
     "session": {
         "enabled": true,
         "default_type": "trimming",
         "auto_save": true,
         "retention_days": 30,
         "trimming": {
-            "max_turns": 8
+            "max_turns": 12
         },
         "summarizing": {
-            "keep_last_n_turns": 3,
-            "context_limit": 10
+            "keep_last_n_turns": 4,
+            "context_limit": 15
         }
+    },
+    "project_context": {
+        "enabled": true,
+        "directory": "data/project_context",
+        "auto_index": true,
+        "grounding_mode": "predictive"
+    },
+    "skills": {
+        "enabled": true,
+        "directory": "data/skills",
+        "auto_load": true,
+        "max_skills_per_query": 3
+    },
+    "memory_tool": {
+        "enabled": true,
+        "directory": "data/memories",
+        "per_session": true,
+        "max_optimize_size": 1024
     },
     "code_indexing": {
         "enabled": true,
         "extensions": [
             ".py",
             ".js",
-            ".ts"
+            ".ts",
+            ".md",
+            ".json"
         ],
         "exclude_dirs": [
             "venv",
@@ -34,19 +54,19 @@
         "enabled": true,
         "track_functions": true,
         "track_classes": true,
-        "track_variables": false
+        "track_variables": true
     },
     "contextual_resolution": {
         "enabled": true,
         "min_confidence": 0.6,
-        "max_history_turns": 5
+        "max_history_turns": 8
     },
     "toon": {
         "enabled": true,
-        "max_tokens": 4000,
-        "reserved_tokens": 500,
+        "max_tokens": 8000,
+        "reserved_tokens": 1000,
         "cache_integration": true,
-        "cache_hit_bonus": 0.1,
+        "cache_hit_bonus": 0.15,
         "dynamic_adjustment": true
     }
 }

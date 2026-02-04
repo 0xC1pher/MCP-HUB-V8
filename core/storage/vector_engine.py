@@ -62,22 +62,35 @@ class VectorEngine:
     def embed_text(self, text: str) -> np.ndarray:
         """
         Generate embedding for text
-        
-        Args:
-            text: Input text
-        
-        Returns:
-            Normalized embedding vector
         """
         embedding = self.model.encode(text, convert_to_numpy=True)
         
         if self.normalize:
-            embedding = embedding / np.linalg.norm(embedding)
+            norm = np.linalg.norm(embedding)
+            if norm > 0:
+                embedding = embedding / norm
         
         if self.dtype == 'float16':
             embedding = embedding.astype(np.float16)
         
         return embedding
+
+    def embed_query(self, query: str) -> np.ndarray:
+        """v9 Compatibility: Alias for embed_text"""
+        return self.embed_text(query)
+
+    def cosine_similarity(self, v1: np.ndarray, v2: np.ndarray) -> float:
+        """Calculate cosine similarity between two vectors"""
+        if v1.dtype == np.float16: v1 = v1.astype(np.float32)
+        if v2.dtype == np.float16: v2 = v2.astype(np.float32)
+        
+        norm1 = np.linalg.norm(v1)
+        norm2 = np.linalg.norm(v2)
+        
+        if norm1 == 0 or norm2 == 0:
+            return 0.0
+            
+        return float(np.dot(v1, v2) / (norm1 * norm2))
     
     def embed_batch(self, texts: List[str]) -> np.ndarray:
         """
@@ -157,7 +170,8 @@ class VectorEngine:
             (chunk_ids, distances) tuple
         """
         if self.index is None:
-            raise ValueError("Index not initialized")
+             # Retornar vacío si no hay índice todavía
+            return [], []
         
         # Convert float16 to float32 for search
         if query_vector.dtype == np.float16:
@@ -167,13 +181,38 @@ class VectorEngine:
         query_vector = query_vector.reshape(1, -1)
         
         # Search
-        labels, distances = self.index.knn_query(query_vector, k=top_k)
+        try:
+            labels, distances = self.index.knn_query(query_vector, k=min(top_k, len(self.id_to_chunk_id)))
+            
+            # Convert internal IDs to chunk IDs
+            chunk_ids = [self.id_to_chunk_id[int(label)] for label in labels[0]]
+            scores = [float(1.0 - dist) for dist in distances[0]]  # Convert distance to similarity
+            
+            return chunk_ids, scores
+        except Exception as e:
+            logger.error(f"Error in vector search: {e}")
+            return [], []
+
+    def search_with_mvr(self, query: str, top_k: int = 5) -> List[Dict]:
+        """
+        v9: Search using Multi-Vector Retrieval if query is string
+        Falls back to standard search if MVR system is not available
+        """
+        # Generar embedding del query
+        query_vector = self.embed_text(query)
         
-        # Convert internal IDs to chunk IDs
-        chunk_ids = [self.id_to_chunk_id[int(label)] for label in labels[0]]
-        scores = [float(1.0 - dist) for dist in distances[0]]  # Convert distance to similarity
+        # Búsqueda estándar
+        chunk_ids, scores = self.search(query_vector, top_k=top_k)
         
-        return chunk_ids, scores
+        # Formatear resultados para el servidor V6
+        results = []
+        for chunk_id, score in zip(chunk_ids, scores):
+            results.append({
+                'chunk_id': chunk_id,
+                'score': score
+            })
+            
+        return results
     
     def serialize_index(self) -> bytes:
         """

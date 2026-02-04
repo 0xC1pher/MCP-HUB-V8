@@ -392,6 +392,26 @@ class AutoQueryExpander:
             }
         }
 
+    def expand(self, query: str) -> Dict[str, Any]:
+        """
+        v9 Compatibility: Alias for expand_query that returns a dict
+        expected by MCPServerV6.
+        """
+        expansion = self.expand_query(query)
+        return {
+            'expansions': expansion.expanded_queries,
+            'terms': [
+                {
+                    'original': t.original_term,
+                    'expanded': t.expanded_term,
+                    'strategy': t.expansion_type.value,
+                    'confidence': t.confidence
+                } for t in expansion.expanded_terms
+            ],
+            'query_type': expansion.query_type.value,
+            'confidence': expansion.confidence_score
+        }
+
     def expand_query(self,
                     query: str,
                     max_expansions: int = 10,

@@ -1,4 +1,4 @@
-# 📖 Manual de Usuario - MCP Hub v8
+# 📖 Manual de Usuario - MCP Hub v9.0.2 (Antigravity Edition)
 
 ## Guía Completa para Desarrolladores
 
@@ -10,12 +10,13 @@
 
 MCP Hub v8 es un servidor de **Protocolo de Contexto de Modelo (MCP)** con **Smart Session Management**. Actúa como tu memoria persistente durante el desarrollo de software, ahora con gestión INTELIGENTE y AUTOMÁTICA de sesiones.
 
-### 🆕 Novedades en V8
+### 🆕 Novedades en V9 (Antigravity Core)
 
-- **Smart Session Init**: Detecta automáticamente el proyecto y tipo de sesión
-- **Auto-Reutilización**: Reutiliza sesiones existentes para el mismo proyecto
-- **Indexación Automática**: Auto-indexa código cuando es necesario
-- **Persistencia Inteligente**: Mantiene el contexto entre sesiones sin intervención manual
+- **AHP (Anti-Hallucination Protocol)**: Grounding factual obligatorio contra requerimientos.
+- **Project Vision Grounding**: Conciencia total de los objetivos del proyecto (`project_context/`).
+- **Claude-like Memory Tool**: Persistencia de largo plazo para preferencias y decisiones.
+- **Skills Manager**: Paquetes de conocimiento semántico reutilizables.
+- **Agnostic Core**: Separación total entre el motor de contexto y la lógica de negocio.
 
 ### ¿Para qué sirve?
 
@@ -86,6 +87,58 @@ INFO:     Uvicorn running on http://127.0.0.1:8765
    ```
 
 3. Reinicia Antigravity
+
+---
+
+## 3. Arquitectura de Flujo Real (v9 JEPA-Grounding)
+
+```mermaid
+flowchart TD
+    A[Consulta Desarrollador] --> B[Orquestador v9]
+    
+    subgraph S1 [Fuentes de Conocimiento]
+        C[Project Grounding<br/>vision.md / context.md]
+        D[Memory Tool<br/>Preferencias / Historial]
+        E[Skills Manager<br/>Conocimiento Reutilizable]
+    end
+    
+    B --> C
+    B --> D
+    B --> E
+    
+    C --> F[Generación Preliminar<br/>con RAG]
+    D --> F
+    E --> F
+    
+    F --> G{Validación Factual<br/>Self-Consistency Check}
+    
+    G -- "Alucinación detectada" --> H[Corrección Iterativa<br/>Re-generación con constraints]
+    H --> G
+    
+    G -- "Validado ✓" --> I[QA Audit Report<br/>Confianza + Fuentes Citadas]
+    
+    I --> J[Respuesta Final<br/>con transparencia]
+    
+    J --> K[Persistencia en Memoria<br/>para aprendizaje continuo]
+    K --> D
+    
+    %% Estilos
+    classDef generation fill:#f6b26b,stroke:#333
+    classDef validation fill:#e06666,stroke:#333,color:white
+    classDef output fill:#6aa84f,stroke:#333,color:white
+    classDef feedback fill:#ffd966,stroke:#333,stroke-dasharray: 5 5
+    
+    class F generation
+    class G,H validation
+    class I,J output
+    class K feedback
+```
+
+### Capas de Autoridad
+1.  **Vision & Requirements** (Factual)
+2.  **Persistent Memory** (Contextual)
+3.  **Skills** (Saber-hacer)
+4.  **Code Index** (Realidad técnica)
 
 ---
 
@@ -439,10 +492,17 @@ extended_search(query)                   # Buscar constants, APIs, models
 get_knowledge_summary()                  # Resumen de conocimiento
 ```
 
-### 🛡️ Quality Guardian (2 tools) - NUEVO v8
+### 🛡️ Quality Guardian & Grounding (3 tools) - ACTUALIZADO v9
 ```
-check_quality(code)                      # Verificar calidad del código
-get_quality_principles()                 # Obtener principios de calidad
+check_quality(code)                      # Verificar calidad (KISS, Django BP)
+get_quality_principles()                 # Principios (DRY, No Redundancy)
+ground_project_context(query)            # Recuperar evidencia FACTUAL de negocio (v9)
+```
+
+### 💾 Persistence & Knowledge (2 tools) - NUEVO v9
+```
+memory_tool(cmd, path, content)          # CRUD de memoria persistente
+skills_tool(cmd, skill_id, content)      # Gestión de habilidades semánticas
 ```
 
 ---

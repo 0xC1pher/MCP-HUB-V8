@@ -50,7 +50,7 @@ except ImportError:
     _tool_logger = None
 
 # Create server
-mcp = FastMCP("yari-mcp-v7")
+mcp = FastMCP("AGI-Context-Vortex")
 
 # ============================================
 # Singleton instances
@@ -105,15 +105,21 @@ async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, sessio
     """
     try:
         if _tool_logger:
-            _tool_logger.query(query, top_k=top_k, session=session_id or "none")
+            _tool_logger.v9_flow("RETRIEVAL", f"Query: {query[:40]}...")
         
         server = get_v6_server()
-        result = server._get_context({
-            'query': query,
-            'top_k': top_k,
-            'min_score': min_score,
-            'session_id': session_id
+        # v9: Unificar via _handle_tools_call para activar logs de flujo
+        result = server._handle_tools_call({
+            'name': 'get_context',
+            'arguments': {
+                'query': query,
+                'top_k': top_k,
+                'min_score': min_score,
+                'session_id': session_id
+            }
         })
+        
+        # Extraer texto del resultado unificado
         if 'content' in result and result['content']:
             return result['content'][0].get('text', 'No context found')
         return "No context found"
@@ -137,9 +143,12 @@ async def validate_response(response: str, evidence: list) -> str:
     """
     try:
         server = get_v6_server()
-        result = server._validate_response({
-            'response': response,
-            'evidence': evidence
+        result = server._handle_tools_call({
+            'name': 'validate_response',
+            'arguments': {
+                'response': response,
+                'evidence': evidence
+            }
         })
         if 'content' in result and result['content']:
             return result['content'][0].get('text', 'Validation complete')
@@ -158,7 +167,7 @@ async def index_status() -> str:
     """
     try:
         server = get_v6_server()
-        result = server._index_status({})
+        result = server._handle_tools_call({'name': 'index_status', 'arguments': {}})
         text = ""
         if 'content' in result and result['content']:
             text = result['content'][0].get('text', '')
@@ -175,6 +184,91 @@ async def index_status() -> str:
         return text if text else "Status unavailable"
     except Exception as e:
         return f"Error: {str(e)}"
+
+# ============================================
+# v9 Tools (Knowledge & Persistence)
+# ============================================
+
+@mcp.tool()
+async def memory_tool(command: str, file_path: str, content: Optional[str] = None, session_id: Optional[str] = None) -> str:
+    """
+    CRUD operations for persistent memory storage.
+    
+    Args:
+        command: create, read, update, delete, or list
+        file_path: Name of the memory file (e.g. 'user_preferences.txt')
+        content: Data to store (for create/update)
+        session_id: Optional session ID for isolation
+    """
+    try:
+        if _tool_logger:
+            _tool_logger.v9_flow("MEMORY", f"{command.upper()} on {file_path}")
+            
+        server = get_v6_server()
+        # v9: Unificar via _handle_tools_call para activar logs de flujo
+        result = server._handle_tools_call({
+            'name': 'memory_tool',
+            'arguments': {
+                'command': command,
+                'file_path': file_path,
+                'content': content,
+                'session_id': session_id
+            }
+        })
+        
+        if 'content' in result and result['content']:
+            return result['content'][0].get('text', 'Success')
+        return "Operación de memoria completada"
+    except Exception as e:
+        if _tool_logger:
+            _tool_logger.error(f"Memory tool failed: {e}")
+        return f"Error en memory_tool: {str(e)}"
+
+@mcp.tool()
+async def skills_tool(command: str, skill_id: str, content: Optional[str] = None, description: Optional[str] = None) -> str:
+    """
+    Manage Knowledge Skills (Claude-like skills).
+    
+    Args:
+        command: create or list
+        skill_id: Unique identifier for the skill
+        content: Main instructions/knowledge for SKILL.md
+        description: Short description for semantic search
+    """
+    try:
+        server = get_v6_server()
+        result = server._handle_tools_call({
+            'name': 'skills_tool',
+            'arguments': {
+                'command': command,
+                'skill_id': skill_id,
+                'content': content,
+                'description': description
+            }
+        })
+        if 'content' in result and result['content']:
+            return result['content'][0].get('text', 'Operación de skills completada')
+        return "Operación de skills completada"
+    except Exception as e:
+        return f"Error en skills_tool: {str(e)}"
+
+@mcp.tool()
+async def ground_project_context(query: str) -> str:
+    """
+    Retrieve factual evidence from project requirements and vision documents.
+    Use this to ensure compliance with project goals.
+    """
+    try:
+        server = get_v6_server()
+        result = server._handle_tools_call({
+            'name': 'ground_project_context',
+            'arguments': {'query': query}
+        })
+        if 'content' in result and result['content']:
+            return result['content'][0].get('text', 'No evidence found')
+        return "No evidence found"
+    except Exception as e:
+        return f"Error en grounding: {str(e)}"
 
 
 # ============================================
@@ -1191,10 +1285,11 @@ if __name__ == "__main__":
     main_logger = None
     
     try:
-        from pretty_logger import get_logger, configure_standard_logging
+        from pretty_logger import get_logger
+        from log_config import setup_clean_logging, get_clean_log_config
         
-        # Configurar logging bonito (intercepta logs de uvicorn y root)
-        configure_standard_logging()
+        # Configurar logging LIMPIO (filtra ruido de SSE, formatea bonito)
+        setup_clean_logging()
         main_logger = get_logger("MCP-V8")
         
         # Registrar handler de shutdown
@@ -1208,30 +1303,44 @@ if __name__ == "__main__":
         # Buscar puerto disponible dinámicamente
         port = find_available_port(8765)
         
-        # Header bonito
-        main_logger.header("Yari Medic - MCP Hub v8.0", "Extended Knowledge + Quality Guardian")
+        # Header bonito v9
+        main_logger.header("CONTEXT VORTEX - MCP Hub v9.0", "Contextual Intelligence Engine")
         
         if port != 8765:
             main_logger.warning(f"Puerto 8765 ocupado, usando puerto alternativo: {port}")
         
-        main_logger.info("Iniciando servidor...", endpoint=f"http://127.0.0.1:{port}/sse")
+        main_logger.info("Iniciando servidor SSE...", endpoint=f"http://127.0.0.1:{port}/sse")
         
-        print("\nTools disponibles (24):", file=sys.stderr)
-        print("  🔷 V5 Core: ping, get_context, validate_response, index_status", file=sys.stderr)
-        print("  📁 V7 Sessions: create_session, get_session_summary, list_sessions, delete_session", file=sys.stderr)
-        print("  💻 V7 Code: index_code, search_entity", file=sys.stderr)
-        print("  ⚡ Advanced: process_advanced, expand_query, chunk_document, get_system_status, add_feedback, optimize_configuration", file=sys.stderr)
-        print("  🧠 Smart: smart_session_init, smart_query, get_smart_status", file=sys.stderr)
-        print("  📚 Extended: extended_index, extended_search, get_knowledge_summary", file=sys.stderr)
-        print("  🛡️ Quality: check_quality, get_quality_principles", file=sys.stderr)
-        print(f"\n🌐 Endpoint: http://127.0.0.1:{port}/sse", file=sys.stderr)
-        print("💾 Presiona Ctrl+C para guardar y cerrar correctamente", file=sys.stderr)
-        main_logger.divider()
+        from pretty_logger import Colors
+        print(f"\n{Colors.GREEN_NEON}📋 VORTEX ARSENAL Ready:{Colors.RESET}", file=sys.stderr)
+        
+        # Matrix flows for categories
+        main_logger.matrix_flow("V5 Core: ping, get_context, validate, status", "INIT-CORE", color=Colors.GREEN_MINT)
+        main_logger.matrix_flow("V9 Intelligence: memory, skills, grounding", "INIT-INTEL", color=Colors.GREEN_NEON)
+        main_logger.matrix_flow("V7 Sessions: create, summary, list, delete", "INIT-SESSIONS", color=Colors.GREEN_PALE)
+        main_logger.matrix_flow("V7 Code: index, search_entity", "INIT-CODE", color=Colors.GREEN_MID)
+        main_logger.matrix_flow("Advanced: process, expand, chunk, feedback", "INIT-ADV", color=Colors.CYAN)
+        
+        main_logger.divider(f" Waiting for Neural Link (SSE) ", char="=", width=80)
         
         app = mcp.sse_app()
         
-        # log_config=None evita que Uvicorn formatee los logs (dejando que PrettyLogger lo haga)
-        uvicorn.run(app, host="127.0.0.1", port=port, log_config=None)
+        # Iniciar thread de pulso visual para "vida" en la consola
+        import threading
+        import time
+        import random
+        
+        def pulse_vortex():
+            while True:
+                time.sleep(random.randint(60, 120)) # Pulso cada 1-2 minutos
+                pulse_id = "".join(random.choice("01") for _ in range(4))
+                main_logger.v9_flow("PULSE", f"{Colors.DIM}Vortex Heartbeat {pulse_id} - System Stable{Colors.RESET}")
+        
+        pulse_thread = threading.Thread(target=pulse_vortex, daemon=True)
+        pulse_thread.start()
+        
+        # Usar configuración de log limpia para uvicorn
+        uvicorn.run(app, host="127.0.0.1", port=port, log_config=get_clean_log_config())
         
     except ImportError:
         import socket
