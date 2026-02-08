@@ -30,9 +30,10 @@ Advanced Features (6):
 """
 import sys
 import os
+import re
 import asyncio
 from pathlib import Path
-from typing import Optional, List, Dict, Any
+from typing import Optional, List, Dict, Any, Set
 
 # Setup paths
 current_dir = Path(__file__).resolve().parent
@@ -44,10 +45,22 @@ from mcp.server.fastmcp import FastMCP
 
 # Import Pretty Logger for beautiful logging
 try:
-    from pretty_logger import get_logger
+    from pretty_logger import get_logger, Colors
     _tool_logger = get_logger("MCP-Tools")
+    _color_logger = get_logger("MCP-Colors")
 except ImportError:
     _tool_logger = None
+    _color_logger = None
+    Colors = None
+
+# Import Visual Activity Monitor for real-time interface
+try:
+    from visual_monitor import get_visual_monitor, VisualActivityMonitor
+    _visual_monitor = get_visual_monitor()
+    if _visual_monitor:
+        _visual_monitor.start_monitoring()
+except ImportError:
+    _visual_monitor = None
 
 # Create server
 mcp = FastMCP("AGI-Context-Vortex")
@@ -58,12 +71,116 @@ mcp = FastMCP("AGI-Context-Vortex")
 _v6_server = None
 _orchestrator = None
 
+BASE_DIR = Path(
+    os.environ.get("MCP_BASE_DIR", mcp_hub_root.parent)
+).resolve()
+EXCLUDED_DIRS: Set[str] = {
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    "__pycache__",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+}
+
+
+def _should_skip_dir(dir_name: str) -> bool:
+    return dir_name in EXCLUDED_DIRS
+
+
+def _safe_read_text(file_path: Path) -> Optional[str]:
+    try:
+        return file_path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        try:
+            return file_path.read_text(encoding="utf-8", errors="ignore")
+        except Exception:
+            return None
+    except Exception:
+        return None
+
+
+def _resolve_base_dir(override: Optional[str]) -> Optional[Path]:
+    if override:
+        candidate = Path(override)
+        if not candidate.is_absolute():
+            candidate = BASE_DIR / candidate
+        candidate = candidate.resolve()
+    else:
+        candidate = BASE_DIR
+    return candidate if candidate.exists() else None
+
+
+def _resolve_css_path(base_dir: Path, override: Optional[str]) -> Optional[Path]:
+    if override:
+        candidate = Path(override)
+        if not candidate.is_absolute():
+            candidate = base_dir / candidate
+        if candidate.exists():
+            return candidate
+
+    env_path = os.environ.get("MCP_CSS_PATH")
+    if env_path:
+        env_candidate = Path(env_path)
+        if not env_candidate.is_absolute():
+            env_candidate = base_dir / env_candidate
+        if env_candidate.exists():
+            return env_candidate
+
+    default_path = base_dir / "static" / "css" / "app.css"
+    if default_path.exists():
+        return default_path
+
+    css_dir = base_dir / "static" / "css"
+    if css_dir.exists():
+        candidates = sorted(css_dir.glob("*.css"))
+        if candidates:
+            return candidates[0]
+
+    return None
+
 def get_v6_server():
     """Get or create singleton instance of MCPServerV6"""
     global _v6_server
     if _v6_server is None:
-        from v6 import MCPServerV6
-        _v6_server = MCPServerV6()
+        try:
+            # Importar de forma segura para evitar problemas circulares
+            # Precargar módulos de storage para evitar importación circular
+            try:
+                from storage import vector_engine
+                print("Storage modules pre-loaded successfully", file=sys.stderr)
+            except ImportError as e:
+                print(f"Warning: Storage modules loading issue: {e}", file=sys.stderr)
+            
+            # Usar importlib para importar dinámicamente y evitar problemas de inicialización
+            import importlib.util
+            import sys
+            
+            # Verificar si el módulo ya está en sys.modules
+            if 'v6' in sys.modules:
+                v6_module = sys.modules['v6']
+            else:
+                # Cargar el módulo dinámicamente
+                spec = importlib.util.spec_from_file_location(
+                    "v6", 
+                    os.path.join(os.path.dirname(__file__), "v6.py")
+                )
+                if spec and spec.loader:
+                    v6_module = importlib.util.module_from_spec(spec)
+                    spec.loader.exec_module(v6_module)
+                    sys.modules['v6'] = v6_module
+                else:
+                    raise ImportError("No se pudo cargar el módulo v6")
+            
+            MCPServerV6 = getattr(v6_module, 'MCPServerV6')
+            _v6_server = MCPServerV6()
+        except Exception as e:
+            print(f"Warning: Could not import MCPServerV6: {e}", file=sys.stderr)
+            import traceback
+            traceback.print_exc()
+            _v6_server = None
     return _v6_server
 
 def get_orchestrator():
@@ -79,17 +196,68 @@ def get_orchestrator():
     return _orchestrator
 
 
+def visual_tool_decorator(tool_func):
+    """Decorador para agregar visualización dinámica a las herramientas"""
+    import time
+    import functools
+    
+    @functools.wraps(tool_func)
+    async def wrapper(*args, **kwargs):
+        tool_name = tool_func.__name__
+        start_time = time.time()
+        
+        # Visual feedback al inicio
+        if _visual_monitor:
+            # Limpiar argumentos para visualización (evitar información sensible)
+            safe_args = {k: str(v)[:50] + "..." if len(str(v)) > 50 else str(v) 
+                         for k, v in kwargs.items() if v is not None}
+            _visual_monitor.tool_started(tool_name, safe_args)
+        
+        try:
+            # Ejecutar la herramienta
+            result = await tool_func(*args, **kwargs)
+            
+            duration = time.time() - start_time
+            
+            # Visual feedback al completar
+            if _visual_monitor:
+                result_summary = "Success"
+                if isinstance(result, str):
+                    if len(result) > 100:
+                        result_summary = f"Result: {len(result)} chars"
+                    else:
+                        result_summary = result[:50] + "..." if len(result) > 50 else result
+                
+                _visual_monitor.tool_completed(tool_name, result_summary, duration)
+            
+            return result
+            
+        except Exception as e:
+            duration = time.time() - start_time
+            
+            # Visual feedback de error
+            if _visual_monitor:
+                _visual_monitor.tool_failed(tool_name, str(e))
+            
+            # Re-lanzar la excepción para que se maneje normalmente
+            raise
+    
+    return wrapper
+
+
 # ============================================
 # V5 Tools (Core Retrieval)
 # ============================================
 
 @mcp.tool()
+@visual_tool_decorator
 async def ping() -> str:
     """Simple ping test to verify MCP connectivity."""
     return "pong - MCP v7 HTTP server is working!"
 
 
 @mcp.tool()
+@visual_tool_decorator
 async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, session_id: Optional[str] = None) -> str:
     """
     Retrieve context from memory with provenance.
@@ -104,6 +272,20 @@ async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, sessio
         Context results with provenance information
     """
     try:
+        import time
+        start_time = time.time()
+        
+        # Visual feedback para tool execution
+        if _visual_monitor:
+            tool_args = {
+                'query': query[:50] + "..." if len(query) > 50 else query,
+                'top_k': top_k,
+                'min_score': min_score
+            }
+            if session_id:
+                tool_args['session_id'] = session_id
+            _visual_monitor.tool_started("get_context", tool_args)
+        
         if _tool_logger:
             _tool_logger.v9_flow("RETRIEVAL", f"Query: {query[:40]}...")
         
@@ -119,17 +301,34 @@ async def get_context(query: str, top_k: int = 5, min_score: float = 0.5, sessio
             }
         })
         
+        duration = time.time() - start_time
+        
         # Extraer texto del resultado unificado
         if 'content' in result and result['content']:
-            return result['content'][0].get('text', 'No context found')
+            response_text = result['content'][0].get('text', 'No context found')
+            
+            # Visual feedback de finalización
+            if _visual_monitor:
+                _visual_monitor.tool_completed("get_context", f"Found {len(result['content'])} results", duration)
+            
+            return response_text
+        
+        # Visual feedback de resultados vacíos
+        if _visual_monitor:
+            _visual_monitor.tool_completed("get_context", "No results found", duration)
+        
         return "No context found"
+        
     except Exception as e:
+        if _visual_monitor:
+            _visual_monitor.tool_failed("get_context", str(e))
         if _tool_logger:
             _tool_logger.error(f"Query failed: {query[:30]}...", error=str(e))
         return f"Error: {str(e)}"
 
 
 @mcp.tool()
+@visual_tool_decorator
 async def validate_response(response: str, evidence: list) -> str:
     """
     Validate a response against provided evidence.
@@ -185,11 +384,76 @@ async def index_status() -> str:
     except Exception as e:
         return f"Error: {str(e)}"
 
+
+@mcp.tool()
+async def escanear_urls_django(base_dir: Optional[str] = None) -> str:
+    """
+    Escanea urls.py y devuelve rutas en formato app_name:route_name.
+    """
+    resolved_base = _resolve_base_dir(base_dir)
+    if not resolved_base:
+        return f"BASE_DIR no existe: {base_dir or BASE_DIR}"
+
+    valid_routes: Set[str] = set()
+
+    for root, dirs, files in os.walk(resolved_base):
+        dirs[:] = [d for d in dirs if not _should_skip_dir(d)]
+        if "urls.py" not in files:
+            continue
+
+        file_path = Path(root) / "urls.py"
+        content = _safe_read_text(file_path)
+        if not content:
+            continue
+
+        app_name_match = re.search(r"\bapp_name\s*=\s*['\"]([^'\"]+)['\"]", content)
+        app_name = app_name_match.group(1) if app_name_match else None
+        if not app_name:
+            continue
+
+        names = re.findall(r"\bname\s*=\s*['\"]([^'\"]+)['\"]", content)
+        for name in names:
+            valid_routes.add(f"{app_name}:{name}")
+
+    if not valid_routes:
+        return "No se encontraron rutas con app_name y name en urls.py"
+
+    return f"Rutas encontradas ({len(valid_routes)}):\n" + "\n".join(sorted(valid_routes))
+
+
+@mcp.tool()
+async def analizar_tokens_css(
+    css_path: Optional[str] = None, base_dir: Optional[str] = None
+) -> str:
+    """
+    Lee el CSS principal y extrae variables de diseño.
+    """
+    resolved_base = _resolve_base_dir(base_dir)
+    if not resolved_base:
+        return f"BASE_DIR no existe: {base_dir or BASE_DIR}"
+
+    resolved_css_path = _resolve_css_path(resolved_base, css_path)
+    if not resolved_css_path:
+        return "No se encontró un archivo CSS válido en static/css"
+
+    content = _safe_read_text(resolved_css_path)
+    if not content:
+        return f"No se pudo leer el archivo CSS: {resolved_css_path}"
+
+    variables = re.findall(r"(--[\w-]+)\s*:\s*([^;]+);", content)
+    if not variables:
+        return f"No se encontraron variables CSS en {resolved_css_path.name}"
+
+    return "Variables de diseño del sistema:\n" + "\n".join(
+        [f"{k}: {v.strip()}" for k, v in variables]
+    )
+
 # ============================================
 # v9 Tools (Knowledge & Persistence)
 # ============================================
 
 @mcp.tool()
+@visual_tool_decorator
 async def memory_tool(command: str, file_path: str, content: Optional[str] = None, session_id: Optional[str] = None) -> str:
     """
     CRUD operations for persistent memory storage.
@@ -276,6 +540,7 @@ async def ground_project_context(query: str) -> str:
 # ============================================
 
 @mcp.tool()
+@visual_tool_decorator
 async def create_session(session_id: str, session_type: str = "general", strategy: str = "trimming") -> str:
     """
     Create a new development session for context tracking.
@@ -493,7 +758,7 @@ async def process_advanced(query: str, documents: Optional[List[Dict[str, Any]]]
         context = {"domain": domain}
         result = await orchestrator.process_advanced(query, documents or [], context)
         
-        output = f"=== Advanced Processing Result ===\n"
+        output = "=== Advanced Processing Result ===\n"
         output += f"Query: {result.query}\n\n"
         
         if hasattr(result, 'expanded_queries') and result.expanded_queries:
@@ -512,7 +777,7 @@ async def process_advanced(query: str, documents: Optional[List[Dict[str, Any]]]
                 output += f"  [{i+1}] Score: {score:.3f}\n"
         
         if hasattr(result, 'feature_status'):
-            output += f"\nFeature Status:\n"
+            output += "\nFeature Status:\n"
             for feature, status in result.feature_status.items():
                 status_val = getattr(status, 'value', 'unknown')
                 output += f"  • {feature}: {status_val}\n"
@@ -547,11 +812,11 @@ async def expand_query(query: str, max_expansions: int = 5, strategies: Optional
         strats = strategies or ["semantic", "statistical", "contextual"]
         expansion = do_expand(query, max_expansions=max_expansions, strategies=strats)
         
-        output = f"=== Query Expansion ===\n"
+        output = "=== Query Expansion ===\n"
         output += f"Original: {query}\n\n"
         
         if hasattr(expansion, 'expanded_queries'):
-            output += f"Expanded Queries:\n"
+            output += "Expanded Queries:\n"
             for eq in expansion.expanded_queries[:max_expansions]:
                 output += f"  • {eq}\n"
         
@@ -595,7 +860,7 @@ async def chunk_document(content: str, file_path: str = "document.txt", min_size
             max_chunk_size=max_size
         )
         
-        output = f"=== Dynamic Chunking Result ===\n"
+        output = "=== Dynamic Chunking Result ===\n"
         output += f"File: {file_path}\n"
         output += f"Total Chunks: {len(chunks)}\n\n"
         
@@ -814,7 +1079,7 @@ async def smart_session_init(project_path: Optional[str] = None, context: str = 
             output += f"   Project: {result.get('project_path', 'N/A')}\n"
             
             if result.get("was_indexed"):
-                output += f"   📁 Code: Auto-indexed\n"
+                output += "   📁 Code: Auto-indexed\n"
             
             output += f"\n✅ {result.get('message', 'Ready')}\n"
         else:
@@ -856,13 +1121,13 @@ async def smart_query(query: str, project_path: Optional[str] = None) -> str:
         
         if "error" in result:
             if _tool_logger:
-                _tool_logger.error(f"smart_query failed", error=result['error'])
+                _tool_logger.error("smart_query failed", error=result['error'])
             return f"Error: {result['error']}"
         
         if _tool_logger:
-            _tool_logger.success(f"smart_query completed", session=result.get('session_id', 'N/A'))
+            _tool_logger.success("smart_query completed", session=result.get('session_id', 'N/A'))
         
-        output = f"=== Smart Query Result ===\n"
+        output = "=== Smart Query Result ===\n"
         output += f"Session: {result.get('session_id', 'N/A')}\n\n"
         
         # Extract actual result
@@ -1121,9 +1386,12 @@ def test_colors_flow() -> str:
     Test tool to verify visual matrix flow and colors in logs.
     """
     global _v6_server
-    if _v6_server:
-        logger.matrix_flow("COLOR-TEST", "INVOKED", color=Colors.GREEN_NEON)
-        logger.jepa_flow("JEPA-RAINBOW", f"{Colors.RED}R{Colors.YELLOW}A{Colors.GREEN}I{Colors.CYAN}N{Colors.BLUE}B{Colors.MAGENTA}O{Colors.RESET}W test")
+    if _v6_server and _color_logger and Colors:
+        _color_logger.matrix_flow("COLOR-TEST", "INVOKED", color=Colors.GREEN_NEON)
+        _color_logger.jepa_flow(
+            "JEPA-RAINBOW",
+            f"{Colors.RED}R{Colors.YELLOW}A{Colors.GREEN}I{Colors.CYAN}N{Colors.BLUE}B{Colors.MAGENTA}O{Colors.RESET}W test",
+        )
         return "Color test executed. Check terminal output."
     return "Server not initialized."
 @mcp.tool()
@@ -1170,7 +1438,7 @@ async def check_quality(code: str) -> str:
         
         if _tool_logger:
             if warnings:
-                _tool_logger.warning(f"Quality issues found", count=len(warnings))
+                _tool_logger.warning("Quality issues found", count=len(warnings))
             else:
                 _tool_logger.success("Quality check passed")
         
@@ -1240,7 +1508,15 @@ def graceful_shutdown(logger=None):
     
     try:
         # 1. Guardar sesiones del servidor v6
-        server = get_v6_server()
+        try:
+            server = get_v6_server()
+        except Exception as e:
+            if logger:
+                logger.warning(f"No se pudo obtener servidor v6 durante shutdown: {e}")
+            else:
+                print(f"⚠️  No se pudo obtener servidor v6 durante shutdown: {e}", file=sys.stderr)
+            server = None
+            
         if server and hasattr(server, 'session_manager'):
             if hasattr(server.session_manager, 'save_all_sessions'):
                 server.session_manager.save_all_sessions()
@@ -1271,11 +1547,6 @@ def graceful_shutdown(logger=None):
             extended.save_index()
             saved_items.append("Extended Knowledge")
         
-        # 6. Cerrar archivo de logs
-        if _tool_logger and hasattr(_tool_logger, 'close'):
-            _tool_logger.close()
-            saved_items.append("Logs")
-        
         if logger:
             logger.success(f"Datos guardados: {', '.join(saved_items)}")
             logger.divider()
@@ -1283,6 +1554,10 @@ def graceful_shutdown(logger=None):
         else:
             print(f"✅ Guardado: {', '.join(saved_items)}", file=sys.stderr)
             print("👋 ¡Hasta pronto!", file=sys.stderr)
+
+        # 6. Cerrar archivo de logs (AL FINAL)
+        if _tool_logger and hasattr(_tool_logger, 'close'):
+            _tool_logger.close()
             
     except Exception as e:
         if logger:
@@ -1361,7 +1636,7 @@ if __name__ == "__main__":
         main_logger.matrix_flow("V7 Code: index, search_entity", "INIT-CODE", color=Colors.GREEN_MID)
         main_logger.matrix_flow("Advanced: process, expand, chunk, feedback", "INIT-ADV", color=Colors.CYAN)
         
-        main_logger.divider(f" Waiting for Neural Link (SSE) ", char="=", width=80)
+        main_logger.divider(" Waiting for Neural Link (SSE) ", char="=", width=80)
         
         app = mcp.sse_app()
         
@@ -1383,8 +1658,6 @@ if __name__ == "__main__":
         uvicorn.run(app, host="127.0.0.1", port=port, log_config=get_clean_log_config())
         
     except ImportError:
-        import socket
-        
         # Fallback si falla pretty_logger
         def signal_handler(sig, frame):
             graceful_shutdown(None)

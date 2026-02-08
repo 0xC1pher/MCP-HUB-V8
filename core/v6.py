@@ -24,7 +24,8 @@ from pretty_logger import logger, Colors, get_logger
 
 # Import v5 components (but not MCPServerV5 class itself)
 from storage.mp4_storage import MP4Storage
-from storage.vector_engine import VectorEngine
+# VectorEngine se importará lazy más adelante para evitar problemas circulares
+VectorEngine = None
 
 # Import advanced features
 try:
@@ -166,9 +167,9 @@ class MCPServerV6:
         v6_mp4_path = str(mcp_hub_root / "data" / "context_vectors_v6.mp4")
         self.storage = MP4Storage(v6_mp4_path)
         
-        # VectorEngine expects a dict
-        engine_config = self.config if isinstance(self.config, dict) else self.config.__dict__
-        self.vector_engine = VectorEngine(engine_config)
+        # Inicializar VectorEngine más tarde para evitar problemas de importación circular
+        self.vector_engine = None  # Se inicializará después
+        self._vector_engine_initialized = False
         
         # Advanced features
         if ADVANCED_AVAILABLE:
@@ -211,6 +212,9 @@ class MCPServerV6:
         else:
             logger.warning("V6 components not available - running in compatibility mode")
         
+        # Inicializar VectorEngine después para evitar problemas de importación circular
+        self._initialize_vector_engine()
+        
         logger.info("="*80)
         logger.info("MCP Server v6 ready")
         logger.info("="*80)
@@ -243,6 +247,30 @@ class MCPServerV6:
         # Fallback al valor por defecto
         self._config_cache[key_path] = default
         return default
+    
+    def _initialize_vector_engine(self):
+        """Inicializar VectorEngine después de evitar problemas de importación circular"""
+        if self._vector_engine_initialized:
+            return
+            
+        try:
+            # Importación lazy de VectorEngine
+            from storage.vector_engine import VectorEngine
+            
+            # VectorEngine expects a dict
+            engine_config = self.config if isinstance(self.config, dict) else self.config.__dict__
+            self.vector_engine = VectorEngine(engine_config)
+            self._vector_engine_initialized = True
+            logger.info("VectorEngine initialized successfully")
+            
+        except ImportError as e:
+            logger.warning(f"VectorEngine no disponible, usando fallback: {e}")
+            self.vector_engine = None
+            self._vector_engine_initialized = True
+        except Exception as e:
+            logger.error(f"Error inicializando VectorEngine: {e}")
+            self.vector_engine = None
+            self._vector_engine_initialized = True
 
     def _log_tool_execution(self, tool_name: str, args: Dict[str, Any], result: Any = None):
         """Log verbose information about tool execution"""
@@ -590,6 +618,23 @@ class MCPServerV6:
                     }
                 },
                 {
+                    'name': 'audit_jepa',
+                    'description': 'Audit a proposal against the JEPA World Model',
+                    'inputSchema': {
+                        'type': 'object',
+                        'properties': {
+                            'query': {'type': 'string'},
+                            'proposal': {'type': 'string', 'description': 'Text to audit'}
+                        },
+                        'required': ['proposal']
+                    }
+                },
+                {
+                    'name': 'sync_world_model',
+                    'description': 'Rebuild and synchronize JEPA World Model from project context',
+                    'inputSchema': {'type': 'object'}
+                },
+                {
                     'name': 'ping',
                     'description': 'Simple ping test to verify MCP connectivity',
                     'inputSchema': {'type': 'object'}
@@ -870,7 +915,7 @@ class MCPServerV6:
         3. Expand query
         4. Track entities mentioned
         """
-        session_id = args.get('session_id')
+        session_id = args.get('session_id') or getattr(self, '_current_session_id', None)
         query = args.get('query', '')
         
         # If no session or V6 not available, use direct retrieval (v5 behavior)
@@ -1577,14 +1622,42 @@ class MCPServerV6:
             s_type = "feature"
             
         await self.session_manager.create_session(session_id, s_type)
+        self._current_session_id = session_id
+        if path:
+            self._current_project_path = path
         return {'content': [{'type': 'text', 'text': f"Smart session '{session_id}' initialized for {context}."}]}
 
     async def _handle_smart_query(self, args: Dict) -> Dict:
         """Execute query with automatic session handling"""
         query = args.get('query', '')
-        # Redirigir a get_context con la sesión actual si existe
-        result = self._get_context_direct(args)
-        return result
+        project_path = args.get('project_path') or getattr(self, '_current_project_path', '')
+
+        session_id = None
+        if project_path:
+            session_id = os.path.basename(project_path) or "general"
+        if not session_id:
+            session_id = getattr(self, '_current_session_id', None) or "general"
+
+        self._current_session_id = session_id
+        if project_path:
+            self._current_project_path = project_path
+
+        existing = await self.session_manager.load_session(session_id)
+        if not existing:
+            try:
+                s_type = SessionType.FEATURE_IMPLEMENTATION
+            except AttributeError:
+                s_type = "feature"
+            await self.session_manager.create_session(session_id, s_type)
+
+        args_copy = dict(args)
+        args_copy['query'] = query
+        args_copy['session_id'] = session_id
+
+        if V6_COMPONENTS_AVAILABLE:
+            return await self._get_context_with_session(args_copy)
+
+        return self._get_context_direct(args_copy)
 
     def _handle_audit_jepa(self, args: Dict) -> Dict:
         """Audit a proposal against Project World Model (JEPA)"""
