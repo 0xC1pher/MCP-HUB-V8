@@ -1,8 +1,8 @@
 """
-MCP Server v7 COMPLETO - HTTP/SSE Transport
-Integra TODAS las funcionalidades de v7 + Advanced Features
+MCP Server v10 Context Vortex - HTTP/SSE Transport
+Integra TODAS las funcionalidades + Code Guardian Anti-Duplicación
 
-TOOLS INCLUIDAS (16 total):
+TOOLS INCLUIDAS (20 total):
 ===========================
 V5 Base (4):
 - ping: Test de conectividad
@@ -27,6 +27,12 @@ Advanced Features (6):
 - get_system_status: Estado del sistema completo
 - add_feedback: Agregar feedback para recalibración dinámica
 - optimize_configuration: Optimizar configuración basada en uso
+
+CODE GUARDIAN (4):
+- check_code_creation: 🛡️ PREVIENE duplicación ANTES de crear código
+- analyze_project_redundancy: 📊 ANALIZA redundancia en TODO el proyecto
+- get_code_suggestions: 💡 SUGIERE código reutilizable existente
+- learn_from_context: 🧠 APRENDE de archivos de contexto
 """
 import sys
 import os
@@ -63,13 +69,14 @@ except ImportError:
     _visual_monitor = None
 
 # Create server
-mcp = FastMCP("AGI-Context-Vortex")
+mcp = FastMCP("AGI-Context-Vortex-v10-Code-Guardian")
 
 # ============================================
 # Singleton instances
 # ============================================
 _v6_server = None
 _orchestrator = None
+_code_guardian_tools = None
 
 BASE_DIR = Path(
     os.environ.get("MCP_BASE_DIR", mcp_hub_root.parent)
@@ -194,6 +201,19 @@ def get_orchestrator():
             print(f"Warning: Could not create orchestrator: {e}", file=sys.stderr)
             _orchestrator = None
     return _orchestrator
+
+def get_code_guardian_tools():
+    """Get or create singleton instance of Code Guardian tools"""
+    global _code_guardian_tools
+    if _code_guardian_tools is None:
+        try:
+            from advanced_features.code_guardian_mcp import create_code_guardian_mcp_tools
+            _code_guardian_tools = create_code_guardian_mcp_tools()
+            print(f"✅ Code Guardian tools initialized: {len(_code_guardian_tools)} tools")
+        except Exception as e:
+            print(f"Warning: Could not create Code Guardian tools: {e}", file=sys.stderr)
+            _code_guardian_tools = None
+    return _code_guardian_tools
 
 
 def visual_tool_decorator(tool_func):
@@ -1005,6 +1025,230 @@ async def optimize_configuration() -> str:
 
 
 # ============================================
+# CODE GUARDIAN TOOLS (Anti-Duplication System)
+# ============================================
+
+@mcp.tool()
+@visual_tool_decorator
+async def check_code_creation(name: str, code_type: str, content: str, context: Optional[Dict] = None, auto_prevent: bool = True) -> str:
+    """
+    🛡️ PREVIENE duplicación ANTES de crear código
+    
+    Detecta si el código que intentas crear ya existe y sugiere alternativas.
+    
+    Args:
+        name: Nombre del elemento (función, clase, etc.)
+        code_type: Tipo de código: function, class, module, template, model, view
+        content: Contenido completo del código propuesto
+        context: Contexto adicional (opcional)
+        auto_prevent: Si debe prevenir automáticamente la creación (default: True)
+    
+    Returns:
+        Resultado de la validación con alertas y sugerencias
+    """
+    try:
+        tools = get_code_guardian_tools()
+        if tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        result = tools['check_code_creation'](
+            code_content=content,
+            file_path=name,
+            code_type=code_type
+        )
+        
+        if result.get('alert'):
+            alert = result['alert']
+            if alert.get('severity') == 'critical':
+                output = f"🚨 CÓDIGO PREVENIDO: {alert.get('message', 'Duplicación detectada')}\n\n"
+                if result.get('suggestions'):
+                    output += "💡 SUGERENCIAS:\n"
+                    for suggestion in result['suggestions']:
+                        output += f"  • {suggestion}\n"
+                return output
+            else:
+                return f"⚠️ ADVERTENCIA: {alert.get('message', 'Similitud detectada')}\n💡 Recomendaciones: {alert.get('recommendations', ['Revisar código existente'])}"
+        
+        else:
+            return f"✅ CÓDIGO APROBADO: {result.get('message', 'No se detectaron duplicados significativos')}"
+            
+    except Exception as e:
+        return f"Error en Code Guardian: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def analyze_project_redundancy(project_path: Optional[str] = None, threshold: float = 0.85) -> str:
+    """
+    📊 ANALIZA redundancia en TODO el proyecto
+    
+    Escanea todo el proyecto en busca de código duplicado o redundante.
+    
+    Args:
+        project_path: Ruta del proyecto (default: directorio actual)
+        threshold: Umbral de similitud (0.0 a 1.0, default: 0.85)
+    
+    Returns:
+        Análisis completo de redundancias encontradas
+    """
+    try:
+        tools = get_code_guardian_tools()
+        if tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        result = tools['analyze_project_redundancy'](
+            project_path=project_path or '.',
+            threshold=threshold
+        )
+        
+        output = "=== ANÁLISIS DE REDUNDANCIA DEL PROYECTO ===\n\n"
+        
+        redundant_groups = result.get('redundant_groups', [])
+        total_elements = result.get('total_elements', 0)
+        
+        if redundant_groups:
+            output += f"🚨 ENCONTRADAS {len(redundant_groups)} GRUPOS REDUNDANTES:\n\n"
+            
+            for i, group in enumerate(redundant_groups, 1):
+                similarity = group.get('similarity', 0)
+                output += f"{i}. GRUPO DE REDUNDANCIA (similitud: {similarity:.2%})\n"
+                
+                if 'codes' in group:
+                    output += f"   📄 Códigos involucrados:\n"
+                    for code in group['codes']:
+                        name = code.get('name', 'Desconocido')
+                        code_type = code.get('type', 'unknown')
+                        file_path = code.get('file_path', 'unknown')
+                        output += f"      • {name} ({code_type}) - {file_path}\n"
+                
+                if 'recommendations' in group:
+                    output += f"   💡 Recomendaciones:\n"
+                    for rec in group['recommendations']:
+                        output += f"      • {rec}\n"
+                
+                output += "\n"
+        
+        else:
+            output += "✅ No se encontraron redundancias significativas\n"
+        
+        output += f"\n📈 RESUMEN:\n"
+        output += f"   Total de elementos analizados: {total_elements}\n"
+        output += f"   Redundancias encontradas: {len(redundant_groups)}\n"
+        output += f"   Umbral de similitud: {threshold:.2%}\n"
+        
+        return output
+        
+    except Exception as e:
+        return f"Error analizando redundancia: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def get_code_suggestions(query: str, code_type: Optional[str] = None, limit: int = 5) -> str:
+    """
+    💡 SUGIERE código reutilizable existente
+    
+    Busca código existente que pueda ser reutilizado para tu necesidad.
+    
+    Args:
+        query: Descripción de lo que necesitas
+        code_type: Tipo de código (opcional): function, class, module, etc.
+        limit: Número máximo de sugerencias (default: 5)
+    
+    Returns:
+        Sugerencias de código reutilizable con detalles
+    """
+    try:
+        tools = get_code_guardian_tools()
+        if tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        suggestions = tools['get_code_suggestions'](
+            query=query,
+            limit=limit
+        )
+        
+        if not suggestions:
+            return "🔍 No se encontraron sugerencias relevantes de código reutilizable"
+        
+        output = f"=== SUGERENCIAS DE CÓDIGO REUTILIZABLE ===\n\n"
+        output += f"📋 Búsqueda: '{query}'\n\n"
+        
+        for i, suggestion in enumerate(suggestions, 1):
+            name = suggestion.get('name', 'Desconocido')
+            code_type = suggestion.get('type', 'unknown')
+            file_path = suggestion.get('file_path', 'unknown')
+            similarity = suggestion.get('similarity', 0)
+            complexity = suggestion.get('complexity', 0)
+            
+            output += f"{i}. 💡 SUGERENCIA: {name} ({code_type})\n"
+            output += f"   📄 Archivo: {file_path}\n"
+            output += f"   🔗 Similitud: {similarity:.2%}\n"
+            output += f"   📊 Complejidad: {complexity:.2f}\n"
+            
+            if suggestion.get('usage_pattern'):
+                output += f"   📈 Patrón de uso: {suggestion['usage_pattern']}\n"
+            
+            if suggestion.get('dependencies'):
+                deps = suggestion['dependencies'][:3] if isinstance(suggestion['dependencies'], list) else []
+                output += f"   🔗 Dependencias: {', '.join(deps)}\n"
+            
+            output += "\n"
+        
+        return output
+        
+    except Exception as e:
+        return f"Error obteniendo sugerencias: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def learn_from_context(context_files: Optional[List[str]] = None) -> str:
+    """
+    🧠 APRENDE de archivos de contexto específicos
+    
+    Actualiza el conocimiento del Code Guardian con archivos de contexto.
+    
+    Args:
+        context_files: Lista de archivos de contexto (default: archivos del proyecto)
+    
+    Returns:
+        Resultado del aprendizaje con estadísticas
+    """
+    try:
+        tools = get_code_guardian_tools()
+        if tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        result = tools['learn_from_context'](context_files=context_files)
+        
+        output = "=== APRENDIZAJE DE CONTEXTO ===\n\n"
+        output += f"📚 Archivos procesados: {result.get('files_processed', 0)}\n"
+        output += f"🔍 Elementos de código aprendidos: {result.get('elements_learned', 0)}\n"
+        
+        processing_time = result.get('processing_time', 0)
+        output += f"⏱️ Tiempo de procesamiento: {processing_time:.2f}s\n"
+        
+        files_processed = result.get('files_processed', 0)
+        elements_learned = result.get('elements_learned', 0)
+        if files_processed > 0:
+            output += f"📈 Promedio de elementos por archivo: {elements_learned/files_processed:.1f}\n"
+        
+        if result.get('errors'):
+            errors = result['errors']
+            output += f"\n⚠️ Errores encontrados: {len(errors)}\n"
+            for error in errors[:3]:  # Mostrar primeros 3 errores
+                output += f"   • {error}\n"
+        
+        output += f"\n✅ Base de conocimiento actualizada exitosamente"
+        
+        return output
+        
+    except Exception as e:
+        return f"Error en aprendizaje de contexto: {str(e)}"
+
+
+# ============================================
 # Smart Session Orchestrator
 # ============================================
 _smart_orchestrator = None
@@ -1550,7 +1794,7 @@ def graceful_shutdown(logger=None):
         if logger:
             logger.success(f"Datos guardados: {', '.join(saved_items)}")
             logger.divider()
-            logger.info("👋 ¡Hasta pronto! MCP Hub v8 cerrado correctamente.")
+            logger.info("👋 ¡Hasta pronto! MCP Hub v10 Code Guardian cerrado correctamente.")
         else:
             print(f"✅ Guardado: {', '.join(saved_items)}", file=sys.stderr)
             print("👋 ¡Hasta pronto!", file=sys.stderr)
@@ -1586,6 +1830,145 @@ def find_available_port(start_port: int = 8765, max_attempts: int = 10) -> int:
             continue
     
     raise RuntimeError(f"No available port found in range {start_port}-{start_port + max_attempts}")
+
+
+# ============================================
+# CODE GUARDIAN TOOLS - Prevención de Duplicación
+# ============================================
+
+@mcp.tool()
+@visual_tool_decorator
+async def check_code_creation(name: str, code_type: str, content: str, 
+                            context: Optional[str] = None, 
+                            auto_prevent: bool = True) -> str:
+    """
+    🛡️ CODE GUARDIAN: Verifica duplicación ANTES de crear código
+    
+    Este es el POLICÍA que detiene la creación de código duplicado.
+    Analiza el código propuesto contra TODO el conocimiento del proyecto
+    y PREVIENE la duplicación con severidad crítica.
+    
+    Args:
+        name: Nombre del código propuesto (ej: 'calculate_total', 'UserProfile')
+        code_type: Tipo de código ('function', 'class', 'model', 'view', 'template', 'form')
+        content: Contenido completo del código a verificar
+        context: Contexto adicional en formato JSON (opcional)
+        auto_prevent: Si debe prevenir automáticamente duplicación crítica (default: True)
+    
+    Returns:
+        Resultado de la verificación con recomendaciones detalladas
+        
+    Examples:
+        check_code_creation(
+            name="calculate_total",
+            code_type="function", 
+            content="def calculate_total(items): return sum(item.price for item in items)",
+            context='{"purpose": "calcular total de factura"}'
+        )
+    """
+    try:
+        if _code_guardian_tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        return _code_guardian_tools['check_code_creation'](
+            name=name,
+            code_type=code_type,
+            content=content,
+            context=context,
+            auto_prevent=auto_prevent
+        )
+        
+    except Exception as e:
+        return f"❌ Error en Code Guardian: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def analyze_project_redundancy(project_path: str = ".") -> str:
+    """
+    📊 ANALIZA REDUNDANCIA: Escanea TODO el proyecto en busca de duplicación
+    
+    Herramienta de análisis profundo que identifica:
+    - Patrones de duplicación frecuentes
+    - Áreas problemáticas del código
+    - Oportunidades de refactorización
+    - Riesgos de duplicación por tipo de código
+    
+    Args:
+        project_path: Ruta del proyecto a analizar (default: ".")
+    
+    Returns:
+        Análisis completo con recomendaciones de refactorización
+        
+    Example:
+        analyze_project_redundancy("/path/to/yari-medic")
+    """
+    try:
+        if _code_guardian_tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        return _code_guardian_tools['analyze_project_redundancy'](project_path)
+        
+    except Exception as e:
+        return f"❌ Error analizando redundancia: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def get_code_suggestions(requirement: str, code_type: str = "function") -> str:
+    """
+    💡 SUGIERE CÓDIGO EXISTENTE: Encuentra código reutilizable para tu necesidad
+    
+    Busca en TODO el conocimiento del proyecto código existente que pueda
+    cumplir con tu requisito. Incluye validación JEPA para consistencia.
+    
+    Args:
+        requirement: Descripción del requisito o funcionalidad buscada
+        code_type: Tipo de código sugerido ('function', 'class', 'model', etc.)
+    
+    Returns:
+        Sugerencias de código reutilizable con validación JEPA
+        
+    Examples:
+        get_code_suggestions("validar email de usuario", "function")
+        get_code_suggestions("modelo de perfil con foto", "model")
+    """
+    try:
+        if _code_guardian_tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        return _code_guardian_tools['get_code_suggestions'](requirement, code_type)
+        
+    except Exception as e:
+        return f"❌ Error obteniendo sugerencias: {str(e)}"
+
+
+@mcp.tool()
+@visual_tool_decorator
+async def learn_from_context(context_files: str) -> str:
+    """
+    🧠 APRENDE DE CONTEXTO: Mejora la detección con archivos de contexto
+    
+    Enseña al Code Guardian sobre nuevos archivos de contexto para
+    mejorar la detección de duplicación y aprender patrones del proyecto.
+    
+    Args:
+        context_files: Lista de archivos separados por comas (ej: "context.md,Vision.md")
+    
+    Returns:
+        Resultado del aprendizaje con mejoras detectadas
+        
+    Example:
+        learn_from_context("data/project_context/context.md,data/project_context/Vision.md")
+    """
+    try:
+        if _code_guardian_tools is None:
+            return "❌ Error: Code Guardian no está disponible"
+        
+        return _code_guardian_tools['learn_from_context'](context_files)
+        
+    except Exception as e:
+        return f"❌ Error en aprendizaje: {str(e)}"
 
 
 if __name__ == "__main__":
@@ -1635,6 +2018,7 @@ if __name__ == "__main__":
         main_logger.matrix_flow("V7 Sessions: create, summary, list, delete", "INIT-SESSIONS", color=Colors.GREEN_PALE)
         main_logger.matrix_flow("V7 Code: index, search_entity", "INIT-CODE", color=Colors.GREEN_MID)
         main_logger.matrix_flow("Advanced: process, expand, chunk, feedback", "INIT-ADV", color=Colors.CYAN)
+        main_logger.matrix_flow("CODE GUARDIAN: duplication prevention system", "INIT-GUARDIAN", color=Colors.RED_NEON)
         
         main_logger.divider(" Waiting for Neural Link (SSE) ", char="=", width=80)
         
@@ -1669,7 +2053,7 @@ if __name__ == "__main__":
         port = find_available_port(8765)
         
         print("=" * 60, file=sys.stderr)
-        print("MCP Server v8 - Extended Knowledge + Quality Guardian", file=sys.stderr)
+        print("MCP Server v10 - Context Vortex + Code Guardian (Anti-Duplication)", file=sys.stderr)
         if port != 8765:
             print(f"⚠️ Puerto 8765 ocupado, usando: {port}", file=sys.stderr)
         print(f"Endpoint: http://127.0.0.1:{port}/sse", file=sys.stderr)
